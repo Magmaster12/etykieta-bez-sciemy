@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Etykieta bez ściemy – Interaktywny Rentgen Etykiet | PopLab</title>
+
+  <!-- Font Inter (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN (stylowanie układu i komponentów) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            lab: {
+              50: '#f0fdf7',
+              100: '#dcfce9',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              900: '#064e3b',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Zewnętrzny arkusz stylów aplikacji -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-emerald-200 selection:text-emerald-950">
+
+  <!-- =====================================================================
+       GÓRNA NAWIGACJA (Zoptymalizowana pod komputer / laptop)
+       ===================================================================== -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/90 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-center justify-between gap-4 py-3.5">
+
+        <!-- Logo i nazwa aplikacji -->
+        <button id="brand-home-btn" type="button" class="flex items-center gap-3 text-left group focus:outline-none">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white shadow-md shadow-emerald-600/20 group-hover:scale-105 transition-transform">
+            <!-- Ikona SVG: Lupa + Liść -->
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="m20 20-3.5-3.5"></path>
+              <path d="M8.5 13.5c0-3 2-5 5-5 0 3-2 5-5 5Z"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-lg font-extrabold tracking-tight text-slate-900">Etykieta bez ściemy</span>
+              <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">PopLab KRD</span>
+            </div>
+            <p class="text-xs text-slate-500 font-medium">Sprawdź skład, prawo i certyfikat w 30 sekund</p>
+          </div>
+        </button>
+
+        <!-- Główne zakładki nawigacyjne -->
+        <nav class="flex items-center gap-1.5 bg-slate-100/90 p-1.5 rounded-2xl border border-slate-200/70 overflow-x-auto max-w-full" aria-label="Główna nawigacja">
+          <button data-tab="xray" type="button" class="nav-tab flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap">
+            <span>🔬</span>
+            <span>Rentgen Etykiety</span>
+            <span id="nav-xray-badge" class="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">0/5</span>
+          </button>
+          <button data-tab="quiz" type="button" class="nav-tab flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap">
+            <span>🧠</span>
+            <span>Sprawdź się!</span>
+            <span id="nav-quiz-badge" class="hidden text-xs px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-800 font-bold">0%</span>
+          </button>
+          <button data-tab="cheatsheet" type="button" class="nav-tab flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap">
+            <span>📋</span>
+            <span>Ściągawka 30 s</span>
+          </button>
+          <button data-tab="sources" type="button" class="nav-tab flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap">
+            <span>📚</span>
+            <span>Źródła i Zespół</span>
+          </button>
+        </nav>
+
+        <!-- Przycisk resetu postępu -->
+        <div class="hidden md:flex items-center gap-3">
+          <button id="open-reset-modal-btn" type="button" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-rose-700 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 transition-colors">
+            ↺ Resetuj postęp
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       GŁÓWNA ZAWARTOŚĆ APLIKACJI (4 WIDOKI SPA)
+       ===================================================================== -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- ===================================================================
+         WIDOK 1: RENTGEN ETYKIETY (Układ dwukolumnowy pod laptop/desktop)
+         =================================================================== -->
+    <section id="view-xray" class="tab-view animate-fade-in">
+
+      <!-- Górny baner kontekstowy i pasek wyboru 5 produktów -->
+      <div class="bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-6 shadow-sm mb-6">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-5">
+          <div>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full mb-2">
+              Moduł 1 · Interaktywny symulator
+            </span>
+            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+              Rentgen Etykiety: Kupujesz czy wyczuwasz ściemę?
+            </h1>
+            <p class="text-sm sm:text-base text-slate-600 mt-1">
+              Oceń 5 produktów inspirowanych rynkiem. Najpierw podejmij decyzję, a potem prześwietl opakowanie przez 4 filtry: <strong class="text-sky-700">Chemię</strong>, <strong class="text-indigo-700">Prawo</strong>, <strong class="text-amber-700">Jakość</strong> i <strong class="text-rose-700">Grafikę</strong>.
+            </p>
+          </div>
+          <div class="flex items-center gap-3 bg-slate-50 px-4 py-3 rounded-2xl border border-slate-200 shrink-0">
+            <div class="text-right">
+              <div class="text-xs font-semibold text-slate-500">Prześwietlone produkty</div>
+              <div id="xray-progress-text" class="text-lg font-extrabold text-slate-900">0 z 5</div>
+            </div>
+            <div class="w-24 h-2.5 bg-slate-200 rounded-full overflow-hidden">
+              <div id="xray-progress-bar" class="h-full bg-emerald-500 rounded-full transition-all duration-500" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pasek wyboru 5 produktów (wypełniany z app.js) -->
+        <div id="product-selector-strip" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5"></div>
+      </div>
+
+      <!-- Przestrzeń robocza: Lewa kolumna (Opakowanie + Pinezki) | Prawa kolumna (Decyzja + Rentgen) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+        <!-- LEWA KOLUMNA: Wizualizacja etykiety i interaktywne pinezki -->
+        <div class="lg:col-span-5 bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-6 shadow-sm">
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <div>
+              <span id="product-category-badge" class="inline-block text-xs font-bold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700">
+                Kategoria
+              </span>
+              <h2 id="product-title" class="text-xl font-extrabold text-slate-900 mt-1.5">Nazwa produktu</h2>
+            </div>
+            <span id="xray-status-pill" class="text-xs font-bold px-3 py-1.5 rounded-xl bg-amber-50 text-amber-800 border border-amber-200 shrink-0">
+              Czeka na decyzję
+            </span>
+          </div>
+
+          <!-- Scena produktu z kontenerem na SVG/PNG i pinezki (współrzędne %) -->
+          <div id="product-stage" class="relative w-full aspect-[4/5] max-w-md mx-auto rounded-2xl bg-gradient-to-b from-slate-100 to-slate-200/70 border border-slate-200 overflow-hidden flex items-center justify-center select-none shadow-inner">
+            <div id="product-svg-wrapper" class="w-full h-full flex items-center justify-center p-4"></div>
+            <div id="xray-scanline-container"></div>
+            <div id="hotspots-layer" class="absolute inset-0 pointer-events-none"></div>
+          </div>
+
+          <!-- Podpowiedź pod produktem -->
+          <div id="stage-hint" class="mt-4 flex items-center justify-between gap-3 text-xs text-slate-500 bg-slate-50 px-4 py-3 rounded-2xl border border-slate-200/80">
+            <span id="stage-hint-text">Przyjrzyj się uważnie napisom, znaczkom i drobnemu drukowi, a potem wybierz werdykt po prawej.</span>
+          </div>
+        </div>
+
+        <!-- PRAWA KOLUMNA: Panel decyzji oraz 4-warstwowy Inspektor Rentgena -->
+        <div class="lg:col-span-7 flex flex-col gap-5">
+
+          <!-- KROK 1: Panel Decyzji -->
+          <div id="decision-card" class="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm">
+            <!-- Stan przed podjęciem decyzji -->
+            <div id="decision-prompt">
+              <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
+                <span>Krok 1 z 2</span>
+                <span>•</span>
+                <span>Twoja pierwsza reakcja</span>
+              </div>
+              <h3 class="text-xl font-extrabold text-slate-900 mb-2">
+                Wrzucasz ten produkt do koszyka czy odstawiasz na półkę?
+              </h3>
+              <p id="product-teaser" class="text-sm text-slate-600 mb-6 leading-relaxed"></p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <button id="btn-vote-kupuje" type="button" class="group flex items-center justify-center gap-3 p-4 rounded-2xl border-2 border-emerald-200 bg-emerald-50/70 hover:bg-emerald-600 hover:border-emerald-600 text-emerald-900 hover:text-white font-bold text-base transition-all shadow-sm hover:shadow-md">
+                  <span class="text-2xl group-hover:scale-110 transition-transform">🛒</span>
+                  <div class="text-left">
+                    <div>Kupuję!</div>
+                    <div class="text-xs font-medium opacity-80">Wygląda rzetelnie i bezpiecznie</div>
+                  </div>
+                </button>
+
+                <button id="btn-vote-sciema" type="button" class="group flex items-center justify-center gap-3 p-4 rounded-2xl border-2 border-rose-200 bg-rose-50/70 hover:bg-rose-600 hover:border-rose-600 text-rose-900 hover:text-white font-bold text-base transition-all shadow-sm hover:shadow-md">
+                  <span class="text-2xl group-hover:scale-110 transition-transform">🚨</span>
+                  <div class="text-left">
+                    <div>Ściema!</div>
+                    <div class="text-xs font-medium opacity-80">Wyczuwam marketingową pułapkę</div>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Stan po podjęciu decyzji (Werdykt) -->
+            <div id="decision-result" class="hidden">
+              <div class="flex items-start gap-3.5">
+                <div id="verdict-icon-box" class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shrink-0"></div>
+                <div>
+                  <div id="verdict-badge" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-extrabold uppercase tracking-wide mb-1"></div>
+                  <h3 id="verdict-headline" class="text-lg font-extrabold text-slate-900"></h3>
+                  <p id="verdict-summary" class="text-sm text-slate-600 mt-1 leading-relaxed"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- KROK 2: 4-warstwowy Inspektor Rentgena -->
+          <div id="xray-inspector-card" class="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm">
+
+            <!-- Blokada przed podjęciem decyzji -->
+            <div id="xray-locked-state" class="text-center py-10 px-4">
+              <div class="w-14 h-14 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center text-2xl mx-auto mb-3 border border-slate-200">
+                🔒
+              </div>
+              <h4 class="text-base font-bold text-slate-800">Rentgen 4 warstw czeka na Twoją decyzję</h4>
+              <p class="text-sm text-slate-500 mt-1 max-w-md mx-auto">
+                Wybierz powyżej <strong>„Kupuję”</strong> albo <strong>„Ściema”</strong>, aby uruchomić interaktywne pinezki i zobaczyć analizę chemiczną, prawną, jakościową i graficzną.
+              </p>
+            </div>
+
+            <!-- Aktywny inspektor Rentgena -->
+            <div id="xray-active-state" class="hidden">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Krok 2 z 2 · Rentgen aktywny</span>
+                  <h3 class="text-lg font-extrabold text-slate-900">Przełączaj warstwy lub klikaj pinezki na opakowaniu</h3>
+                </div>
+                <span id="layers-visited-counter" class="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
+                  Odkryto: 1/4 warstw
+                </span>
+              </div>
+
+              <!-- 4 przyciski warstw (generowane przez app.js) -->
+              <div id="layer-tabs" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-5"></div>
+
+              <!-- Karta aktywnej warstwy -->
+              <div id="layer-detail-box" class="rounded-2xl p-5 border-2 transition-all">
+                <div class="flex items-center justify-between gap-2 mb-2.5">
+                  <span id="layer-tag" class="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full"></span>
+                  <span class="text-xs font-semibold text-slate-500">Pinezka na opakowaniu</span>
+                </div>
+                <h4 id="layer-title" class="text-xl font-extrabold text-slate-900 mb-2"></h4>
+                <p id="layer-text" class="text-sm sm:text-base text-slate-700 leading-relaxed mb-4"></p>
+                <div class="flex items-center gap-2 pt-3 border-t border-slate-200/80 text-xs text-slate-600">
+                  <span class="font-bold text-slate-800">📖 Źródło naukowe / prawne:</span>
+                  <span id="layer-source" class="font-medium"></span>
+                </div>
+              </div>
+
+              <!-- Nawigacja między produktami -->
+              <div class="mt-6 pt-5 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+                <button id="btn-prev-product" type="button" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors">
+                  ← Poprzedni produkt
+                </button>
+                <div class="flex items-center gap-2.5">
+                  <button id="btn-next-product" type="button" class="px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow-sm transition-colors">
+                    Następny produkt →
+                  </button>
+                  <button id="btn-goto-quiz-from-xray" type="button" class="hidden px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition-colors">
+                    Przejdź do Quizu „Sprawdź się!” →
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         WIDOK 2: SPRAWDŹ SIĘ! (QUIZ – 12 pytań z 3 kategorii)
+         =================================================================== -->
+    <section id="view-quiz" class="tab-view hidden animate-fade-in">
+
+      <!-- Ekran startowy Quizu -->
+      <div id="quiz-intro" class="max-w-5xl mx-auto">
+        <div class="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm mb-6">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="max-w-2xl">
+              <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 border border-indigo-200 px-3 py-1 rounded-full mb-3">
+                Moduł 2 · Sprawdź swoją wiedzę
+              </span>
+              <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Czy dasz się nabrać przy półce sklepowej?
+              </h1>
+              <p class="text-sm sm:text-base text-slate-600 mt-2 leading-relaxed">
+                Wybierz pełny test (12 pytań) albo jedną ze ścieżek tematycznych: zdrowe odżywianie i pułapki w tabelach, chemia bez strachu lub prawo i manipulacje marketingowe. Po każdej odpowiedzi od razu poznasz konkretne wyjaśnienie i źródło.
+              </p>
+            </div>
+            <div class="bg-indigo-50/80 border border-indigo-200 rounded-2xl p-4 min-w-[200px] text-center shrink-0">
+              <div class="text-xs font-bold uppercase tracking-wider text-indigo-700">Twój najlepszy wynik</div>
+              <div id="quiz-best-score-display" class="text-3xl font-black text-indigo-900 mt-1">—</div>
+              <div id="quiz-best-rank-display" class="text-xs font-medium text-indigo-700 mt-0.5">Jeszcze nie rozegrano</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Karty wyboru kategorii Quizu -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <button data-quiz-cat="all" type="button" class="quiz-start-card text-left bg-gradient-to-br from-emerald-600 to-teal-700 text-white rounded-3xl p-6 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">🎯</span>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm">12 pytań · ok. 3 min</span>
+            </div>
+            <h2 class="text-xl font-extrabold">Pełny Test „Łowcy Mitów”</h2>
+            <p class="text-sm text-emerald-50 mt-1.5 leading-relaxed">
+              Wszystkie 3 obszary w jednym teście: tabele wartości odżywczych, E-dodatki, suplementy, UOKiK i greenwashing.
+            </p>
+            <div class="mt-4 inline-flex items-center gap-1.5 text-sm font-bold">
+              <span>Rozpocznij pełny test</span>
+              <span>→</span>
+            </div>
+          </button>
+
+          <button data-quiz-cat="odzywianie" type="button" class="quiz-start-card text-left bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm hover:border-emerald-400 hover:shadow-md hover:-translate-y-0.5 transition-all">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">🥗</span>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">4 pytania</span>
+            </div>
+            <h2 class="text-xl font-extrabold text-slate-900">Zdrowe odżywianie i pułapki w tabelach</h2>
+            <p class="text-sm text-slate-600 mt-1.5 leading-relaxed">
+              „Bez dodatku cukru”, produkty „light”, kolejność składników oraz trik z zaniżoną porcją.
+            </p>
+            <div class="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-emerald-700">
+              <span>Sprawdź tę kategorię</span>
+              <span>→</span>
+            </div>
+          </button>
+
+          <button data-quiz-cat="chemia" type="button" class="quiz-start-card text-left bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm hover:border-sky-400 hover:shadow-md hover:-translate-y-0.5 transition-all">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">🧪</span>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-sky-50 text-sky-800 border border-sky-200">4 pytania</span>
+            </div>
+            <h2 class="text-xl font-extrabold text-slate-900">Chemia bez strachu (walka z chemofobią)</h2>
+            <p class="text-sm text-slate-600 mt-1.5 leading-relaxed">
+              Czym jest E300, czy woda alkaliczna „odkwasza” oraz czy „naturalne” zawsze oznacza bezpieczne.
+            </p>
+            <div class="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-sky-700">
+              <span>Sprawdź tę kategorię</span>
+              <span>→</span>
+            </div>
+          </button>
+
+          <button data-quiz-cat="prawo" type="button" class="quiz-start-card text-left bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm hover:border-indigo-400 hover:shadow-md hover:-translate-y-0.5 transition-all">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">⚖️</span>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-indigo-50 text-indigo-800 border border-indigo-200">4 pytania</span>
+            </div>
+            <h2 class="text-xl font-extrabold text-slate-900">Prawo, certyfikaty i manipulacje</h2>
+            <p class="text-sm text-slate-600 mt-1.5 leading-relaxed">
+              Suplement vs. lek, „przebadane dermatologicznie”, kryptoreklamy influencerów i prawdziwy Euroliść.
+            </p>
+            <div class="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-indigo-700">
+              <span>Sprawdź tę kategorię</span>
+              <span>→</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Aktywny widok pytania Quizu -->
+      <div id="quiz-active" class="hidden max-w-3xl mx-auto">
+        <div class="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm">
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <button id="quiz-abort-btn" type="button" class="text-xs font-semibold text-slate-500 hover:text-slate-900 px-3 py-1.5 rounded-lg hover:bg-slate-100 transition-colors">
+              ← Wybór kategorii
+            </button>
+            <div class="flex items-center gap-2">
+              <span id="quiz-cat-pill" class="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-700">Kategoria</span>
+              <span id="quiz-type-pill" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200">Typ</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-xs font-bold text-slate-500 mb-2">
+            <span id="quiz-counter">Pytanie 1 z 12</span>
+            <span id="quiz-live-score" class="text-emerald-700">Punkty: 0</span>
+          </div>
+          <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden mb-6">
+            <div id="quiz-progress-bar" class="h-full bg-indigo-600 rounded-full transition-all duration-300" style="width: 8%"></div>
+          </div>
+
+          <h2 id="quiz-question-text" class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug mb-6"></h2>
+
+          <!-- Opcje odpowiedzi (generowane przez app.js) -->
+          <div id="quiz-options-container" class="flex flex-col gap-3"></div>
+
+          <!-- Natychmiastowe wyjaśnienie po wyborze odpowiedzi -->
+          <div id="quiz-feedback-box" class="hidden mt-6 rounded-2xl p-5 border-2 animate-fade-in">
+            <div class="flex items-start gap-3">
+              <span id="quiz-feedback-icon" class="text-2xl shrink-0"></span>
+              <div>
+                <h4 id="quiz-feedback-title" class="text-base font-extrabold"></h4>
+                <p id="quiz-feedback-text" class="text-sm text-slate-700 mt-1 leading-relaxed"></p>
+                <div class="mt-2.5 text-xs font-semibold text-slate-600">
+                  📖 Źródło: <span id="quiz-feedback-source"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex justify-end">
+            <button id="quiz-next-btn" type="button" class="hidden px-6 py-3 rounded-2xl text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 shadow-sm transition-all">
+              Następne pytanie →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ekran podsumowania Quizu -->
+      <div id="quiz-summary" class="hidden max-w-3xl mx-auto">
+        <div class="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm text-center">
+          <div id="summary-emoji" class="w-20 h-20 rounded-3xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-4xl mx-auto mb-4">🏆</div>
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Twój wynik w teście</span>
+          <div id="summary-score-big" class="text-5xl font-black text-slate-900 mt-1">0 / 12</div>
+          <div id="summary-rank-badge" class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-extrabold mt-3"></div>
+          <p id="summary-message" class="text-sm sm:text-base text-slate-600 mt-3 max-w-xl mx-auto leading-relaxed"></p>
+
+          <!-- Rozbicie wyników według kategorii -->
+          <div id="summary-breakdown" class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-7 text-left"></div>
+
+          <div class="mt-8 pt-6 border-t border-slate-200 flex flex-wrap items-center justify-center gap-3">
+            <button id="quiz-retry-btn" type="button" class="px-5 py-3 rounded-2xl text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition-colors">
+              ↺ Rozwiąż ponownie
+            </button>
+            <button id="quiz-back-cats-btn" type="button" class="px-5 py-3 rounded-2xl text-sm font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors">
+              Wybierz inną kategorię
+            </button>
+            <button data-goto-tab="cheatsheet" type="button" class="px-5 py-3 rounded-2xl text-sm font-bold text-emerald-800 bg-emerald-100 hover:bg-emerald-200 transition-colors">
+              📋 Pobierz Ściągawkę 30 s →
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===================================================================
+         WIDOK 3: ŚCIĄGAWKA 30 SEKUND (Karta do pobrania PNG / druku)
+         =================================================================== -->
+    <section id="view-cheatsheet" class="tab-view hidden animate-fade-in">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- Lewa kolumna: Wizualna Karta Ściągawki -->
+        <div class="lg:col-span-8">
+          <div id="print-cheatsheet" class="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden">
+            <div class="bg-gradient-to-r from-emerald-700 via-teal-700 to-slate-900 p-6 sm:p-8 text-white">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <span class="text-xs font-bold uppercase tracking-widest bg-white/15 px-3 py-1 rounded-full">Etykieta bez ściemy · Ściągawka zakupowa</span>
+                <span class="text-xs font-semibold text-emerald-200">30 sekund zamiast doktoratu</span>
+              </div>
+              <h1 class="text-2xl sm:text-3xl font-black tracking-tight">TEST 3 PYTAŃ PRZY PÓŁCE</h1>
+              <p class="text-sm sm:text-base text-emerald-100 mt-1.5">
+                „Zielony listek to nie dowód – sprawdź skład, prawo i certyfikat w 30 sekund.”
+              </p>
+            </div>
+
+            <div class="p-6 sm:p-8 space-y-5">
+              <!-- Krok 1 -->
+              <div class="flex items-start gap-4 p-5 rounded-2xl bg-sky-50/70 border border-sky-200/80">
+                <div class="w-11 h-11 rounded-2xl bg-sky-600 text-white font-black text-lg flex items-center justify-center shrink-0 shadow-sm">1</div>
+                <div>
+                  <h2 class="text-lg font-extrabold text-slate-900">CO JEST NA 1. MIEJSCU? <span class="text-sky-700 font-semibold text-sm">(Skład i tabela)</span></h2>
+                  <ul class="mt-2 space-y-1.5 text-sm text-slate-700 list-disc list-inside">
+                    <li><strong>Odwróć opakowanie</strong> – front to reklama, tył to fakty prawnie regulowane.</li>
+                    <li>Pierwsze 3 składniki stanowią większość produktu (kolejność jest zawsze malejąca).</li>
+                    <li>Cukry i kalorie porównuj <strong>zawsze na 100 g / 100 ml</strong>, nigdy „na porcję”.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Krok 2 -->
+              <div class="flex items-start gap-4 p-5 rounded-2xl bg-indigo-50/70 border border-indigo-200/80">
+                <div class="w-11 h-11 rounded-2xl bg-indigo-600 text-white font-black text-lg flex items-center justify-center shrink-0 shadow-sm">2</div>
+                <div>
+                  <h2 class="text-lg font-extrabold text-slate-900">LEK, JEDZENIE CZY PUSTA OBIETNICA? <span class="text-indigo-700 font-semibold text-sm">(Prawo i chemia)</span></h2>
+                  <ul class="mt-2 space-y-1.5 text-sm text-slate-700 list-disc list-inside">
+                    <li><strong>Suplement diety = żywność</strong>, nie lek (nie musi przechodzić badań skuteczności).</li>
+                    <li>„Bez dodatku cukru” ≠ „bez cukru”; hasło „100% bez chemii” jest fizycznie niemożliwe.</li>
+                    <li>Symbole <strong>E</strong> to przebadane dodatki – często zwykłe składniki naturalne (np. <strong>E300 = witamina C</strong>, E330 = kwas cytrynowy, E440 = pektyny).</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Krok 3 -->
+              <div class="flex items-start gap-4 p-5 rounded-2xl bg-amber-50/70 border border-amber-200/80">
+                <div class="w-11 h-11 rounded-2xl bg-amber-500 text-white font-black text-lg flex items-center justify-center shrink-0 shadow-sm">3</div>
+                <div>
+                  <h2 class="text-lg font-extrabold text-slate-900">KTO TO SPRAWDZIŁ? <span class="text-amber-700 font-semibold text-sm">(Jakość i grafika)</span></h2>
+                  <ul class="mt-2 space-y-1.5 text-sm text-slate-700 list-disc list-inside">
+                    <li>Zignoruj zielony kolor, papierową teksturę, listki i hasła „eko / naturalne” (<em>green-cueing</em>).</li>
+                    <li>Prawdziwy certyfikat ma <strong>oficjalną nazwę i kod kontroli</strong> (np. Euroliść + <code>PL-EKO-XX</code>, EU Ecolabel, normy ISO).</li>
+                    <li>Ładna złota pieczątka bez nazwy niezależnej jednostki? To tylko dekoracja.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Mini-słowniczek pułapek -->
+              <div class="pt-4 border-t border-slate-200">
+                <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-500 mb-3">Mini-słowniczek najczęstszych haczyków</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                  <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                    <span class="font-bold text-slate-900 block mb-0.5">„Przebadany dermatologicznie”</span>
+                    <span class="text-slate-600">Nie informuje o skali testu ani jego wyniku. Każdy kosmetyk w UE i tak musi mieć ocenę bezpieczeństwa.</span>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                    <span class="font-bold text-slate-900 block mb-0.5">„Light / Fit”</span>
+                    <span class="text-slate-600">Oznacza min. 30% mniej kalorii/tłuszczu względem pierwowzoru – nie oznacza, że produkt jest niskokaloryczny.</span>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                    <span class="font-bold text-slate-900 block mb-0.5">Kod rabatowy influencera</span>
+                    <span class="text-slate-600">Według UOKiK każda korzyść (prowizja, paczka PR) musi być wyraźnie oznaczona jako #reklama.</span>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                    <span class="font-bold text-slate-900 block mb-0.5">„Odkwasza / Detoks”</span>
+                    <span class="text-slate-600">Hasło marketingowe. Za pH krwi i usuwanie toksyn odpowiadają nerki, płuca i wątroba.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prawa kolumna: Akcje pobierania, kopiowania i druku -->
+        <div class="lg:col-span-4 space-y-5 no-print">
+          <div class="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm">
+            <h2 class="text-lg font-extrabold text-slate-900 mb-2">Zabierz Ściągawkę ze sobą</h2>
+            <p class="text-sm text-slate-600 mb-5 leading-relaxed">
+              Zapisz gotową grafikę na dysku lub w galerii telefonu, aby mieć „Test 3 Pytań” pod ręką podczas codziennych zakupów.
+            </p>
+
+            <div class="space-y-3">
+              <button id="btn-download-png" type="button" class="w-full flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow-sm transition-all">
+                <span>⬇️</span>
+                <span>Pobierz Ściągawkę jako PNG</span>
+              </button>
+
+              <button id="btn-copy-cheatsheet" type="button" class="w-full flex items-center justify-center gap-2.5 px-5 py-3 rounded-2xl text-sm font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 transition-colors">
+                <span>📋</span>
+                <span>Kopiuj tekst do notatek</span>
+              </button>
+
+              <button id="btn-print-cheatsheet" type="button" class="w-full flex items-center justify-center gap-2.5 px-5 py-3 rounded-2xl text-sm font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 transition-colors">
+                <span>🖨️</span>
+                <span>Drukuj kartę (A4)</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-emerald-900 text-white rounded-3xl p-6 shadow-sm">
+            <div class="text-xs font-bold uppercase tracking-wider text-emerald-300 mb-1.5">Wskazówka do prezentacji</div>
+            <h3 class="text-base font-extrabold mb-2">Dlaczego ta funkcja działa?</h3>
+            <p class="text-xs sm:text-sm text-emerald-100 leading-relaxed">
+              Zamiast długiego wykładu, odbiorca wychodzi z narzędzia z konkretnym nawykiem i plikiem PNG w telefonie. Przycisk powyżej generuje obraz wysokiej rozdzielczości w locie (HTML5 Canvas) bez zewnętrznego serwera.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         WIDOK 4: ŹRÓDŁA NAUKOWE, ZESPÓŁ 2 I ANKIETA TESTOWA (FORUM)
+         =================================================================== -->
+    <section id="view-sources" class="tab-view hidden animate-fade-in">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+        <!-- Lewa kolumna: Bibliografia naukowa i prawna -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-7 shadow-sm">
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full mb-2">
+              Rzetelność merytoryczna
+            </span>
+            <h1 class="text-2xl font-extrabold text-slate-900 mb-2">Źródła naukowe, prawne i normy</h1>
+            <p class="text-sm text-slate-600 mb-6">
+              Wszystkie analizy w Rentgenie Etykiety oraz odpowiedzi w Quizie opierają się na obowiązujących aktach prawnych UE/RP, opiniach EFSA i standardach jakości.
+            </p>
+
+            <div class="space-y-4">
+              <div class="p-4 rounded-2xl bg-sky-50/60 border border-sky-200/80">
+                <h2 class="text-sm font-extrabold text-sky-900 uppercase tracking-wide mb-2">🧪 Chemia, toksykologia i żywienie</h2>
+                <ul class="text-sm text-slate-700 space-y-1.5 list-disc list-inside">
+                  <li><strong>EFSA</strong> (Europejski Urząd ds. Bezpieczeństwa Żywności) – oceny bezpieczeństwa dodatków do żywności (wykaz E) i oświadczeń zdrowotnych.</li>
+                  <li><strong>Baza CosIng</strong> Komisji Europejskiej – wykaz substancji i składników kosmetycznych (INCI).</li>
+                  <li><strong>NCEŻ</strong> (Narodowe Centrum Edukacji Żywieniowej, NIZP PZH-PIB) – zalecenia czytania etykiet i analizy cukrów prostych.</li>
+                  <li>Zasada dawki (toksykologia) oraz podstawy fizjologii gospodarki kwasowo-zasadowej człowieka.</li>
+                </ul>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-indigo-50/60 border border-indigo-200/80">
+                <h2 class="text-sm font-extrabold text-indigo-900 uppercase tracking-wide mb-2">⚖️ Prawo konsumenckie, żywnościowe i kosmetyczne</h2>
+                <ul class="text-sm text-slate-700 space-y-1.5 list-disc list-inside">
+                  <li><strong>Rozporządzenie (UE) nr 1169/2011</strong> w sprawie przekazywania konsumentom informacji na temat żywności (kolejność składników, tabela na 100 g).</li>
+                  <li><strong>Rozporządzenie (WE) nr 1924/2006</strong> w sprawie oświadczeń żywieniowych i zdrowotnych („bez dodatku cukru”, „light”).</li>
+                  <li><strong>Rozporządzenie (WE) nr 1223/2009</strong> i <strong>(UE) nr 655/2013</strong> – wspólne kryteria uzasadniania oświadczeń w kosmetykach (zakaz dyskredytowania legalnych składników).</li>
+                  <li><strong>Dyrektywa (UE) 2024/825</strong> – wzmocnienie pozycji konsumentów w procesie transformacji ekologicznej (zakaz niezweryfikowanego <em>greenwashingu</em> i własnych eko-znaczków).</li>
+                  <li><strong>Ustawa o bezpieczeństwie żywności i żywienia</strong> (status suplementów diety i rejestr GIS) oraz <strong>Rekomendacje Prezesa UOKiK</strong> ws. oznaczania treści reklamowych przez influencerów.</li>
+                </ul>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-amber-50/60 border border-amber-200/80">
+                <h2 class="text-sm font-extrabold text-amber-900 uppercase tracking-wide mb-2">🏅 Zarządzanie jakością i psychologia opakowań</h2>
+                <ul class="text-sm text-slate-700 space-y-1.5 list-disc list-inside">
+                  <li><strong>Rozporządzenie (UE) 2018/848</strong> – oficjalny znak produkcji ekologicznej UE (Euroliść + kod jednostki certyfikującej).</li>
+                  <li>Standardy certyfikacji <strong>EU Ecolabel</strong>, <strong>COSMOS</strong> oraz normy <strong>ISO 14024</strong> (etykietowanie środowiskowe typu I).</li>
+                  <li>Badania nad efektem <em>health halo</em>, <em>green-cueing</em> oraz <em>science-washingiem</em> w projektowaniu opakowań.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prawa kolumna: Zespół 2 + Mikro-ankieta testowa na Forum -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Hackathon PopLab · KRD PLUS</span>
+            <h2 class="text-xl font-extrabold text-slate-900 mt-1 mb-4">Zespół 2 – Interdyscyplinarny skład</h2>
+
+            <div class="space-y-3 text-sm">
+              <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+                <span class="w-9 h-9 rounded-xl bg-rose-100 text-rose-700 font-bold flex items-center justify-center shrink-0">🎨</span>
+                <div>
+                  <div class="font-bold text-slate-900">Karolina Peek</div>
+                  <div class="text-xs text-slate-600">Akademia Humanistyczno-Ekonomiczna w Łodzi · Sztuki plastyczne i konserwacja dzieł sztuki</div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+                <span class="w-9 h-9 rounded-xl bg-sky-100 text-sky-700 font-bold flex items-center justify-center shrink-0">🧪</span>
+                <div>
+                  <div class="font-bold text-slate-900">Inga Werecka</div>
+                  <div class="text-xs text-slate-600">Politechnika Gdańska · Nauki chemiczne</div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+                <span class="w-9 h-9 rounded-xl bg-amber-100 text-amber-700 font-bold flex items-center justify-center shrink-0">🏅</span>
+                <div>
+                  <div class="font-bold text-slate-900">Maria Pilarczyk</div>
+                  <div class="text-xs text-slate-600">Politechnika Częstochowska · Nauki o zarządzaniu i jakości</div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+                <span class="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center shrink-0">⚖️</span>
+                <div>
+                  <div class="font-bold text-slate-900">Jagoda Szemberska</div>
+                  <div class="text-xs text-slate-600">Uniwersytet im. Adama Mickiewicza w Poznaniu · Nauki prawne</div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200/80">
+                <span class="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center shrink-0">⚖️</span>
+                <div>
+                  <div class="font-bold text-slate-900">Jakub Sawicki</div>
+                  <div class="text-xs text-slate-600">Uniwersytet im. Adama Mickiewicza w Poznaniu · Nauki prawne</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mikro-ankieta testowa na Forum w Szklarskiej Porębie -->
+          <div class="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 mb-2">Test na Forum (Kanwa 7)</span>
+            <h3 class="text-lg font-extrabold text-slate-900 mb-1">Oceń prototyp w 15 sekund</h3>
+            <p class="text-xs text-slate-600 mb-4">Zbieramy opinie testerów, aby dopracować narzędzie przed finałem.</p>
+
+            <form id="forum-feedback-form" class="space-y-3">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1.5">Czy wyjaśnienia były zrozumiałe?</label>
+                <div id="rating-stars" class="flex items-center gap-1.5">
+                  <button type="button" data-star="1" class="star-btn w-9 h-9 rounded-xl bg-slate-100 text-slate-400 hover:bg-amber-100 hover:text-amber-500 text-lg font-bold transition-colors">★</button>
+                  <button type="button" data-star="2" class="star-btn w-9 h-9 rounded-xl bg-slate-100 text-slate-400 hover:bg-amber-100 hover:text-amber-500 text-lg font-bold transition-colors">★</button>
+                  <button type="button" data-star="3" class="star-btn w-9 h-9 rounded-xl bg-slate-100 text-slate-400 hover:bg-amber-100 hover:text-amber-500 text-lg font-bold transition-colors">★</button>
+                  <button type="button" data-star="4" class="star-btn w-9 h-9 rounded-xl bg-slate-100 text-slate-400 hover:bg-amber-100 hover:text-amber-500 text-lg font-bold transition-colors">★</button>
+                  <button type="button" data-star="5" class="star-btn w-9 h-9 rounded-xl bg-slate-100 text-slate-400 hover:bg-amber-100 hover:text-amber-500 text-lg font-bold transition-colors">★</button>
+                </div>
+              </div>
+              <div>
+                <label for="feedback-note" class="block text-xs font-bold text-slate-700 mb-1">Który mit zaskoczył Cię najbardziej / co poprawić?</label>
+                <textarea id="feedback-note" rows="2" placeholder="Np. zaskoczył mnie mus z E300..." class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
+              </div>
+              <button type="submit" class="w-full py-2.5 rounded-xl text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 transition-colors">
+                Zapisz opinię testera
+              </button>
+            </form>
+
+            <div id="saved-feedback-list" class="mt-4 pt-3 border-t border-slate-200 hidden">
+              <div class="text-xs font-bold text-slate-500 mb-2">Zapisane opinie w tej przeglądarce (<span id="feedback-count">0</span>):</div>
+              <ul id="feedback-items" class="space-y-1.5 max-h-32 overflow-y-auto text-xs text-slate-600"></ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Stopka -->
+  <footer class="border-t border-slate-200 bg-white mt-auto py-5 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+      <div><strong>Etykieta bez ściemy</strong> · Prototyp Zespołu 2 na Hackathon PopLab (KRD PLUS)</div>
+      <div>Wszystkie prezentowane marki i opakowania są fikcyjne i służą wyłącznie celom edukacyjnym.</div>
+    </div>
+  </footer>
+
+  <!-- Modal potwierdzenia resetu postępu -->
+  <div id="reset-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4" role="dialog" aria-modal="true" aria-labelledby="reset-modal-title">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-xl border border-slate-200 animate-fade-in">
+      <h3 id="reset-modal-title" class="text-lg font-extrabold text-slate-900">Zresetować zapisany postęp?</h3>
+      <p class="text-sm text-slate-600 mt-2">
+        Usunie to Twoje dotychczasowe decyzje w Rentgenie Etykiety oraz najlepszy wynik w Quizie zapisane w tej przeglądarce.
+      </p>
+      <div class="mt-6 flex items-center justify-end gap-2.5">
+        <button id="cancel-reset-btn" type="button" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors">
+          Anuluj
+        </button>
+        <button id="confirm-reset-btn" type="button" class="px-4 py-2.5 rounded-xl text-sm font-bold text-white bg-rose-600 hover:bg-rose-700 transition-colors">
+          Tak, zresetuj
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kontener powiadomień Toast -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Zewnętrzny skrypt z bazą danych i logiką aplikacji -->
+  <script src="app.js"></script>
+</body>
+</html>
