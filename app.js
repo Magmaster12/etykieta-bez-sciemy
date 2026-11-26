@@ -62,189 +62,647 @@ const LAYER_META = {
 
 const PRODUCTS = [
   {
+    id: 'magnelek-b6',
+    mainCategory: 'leki',
+    shortName: 'MagneLek B6 (Lek)',
+    name: 'MagneLek B6 100 mg – Produkt leczniczy (OTC)',
+    category: '💊 Lek (Produkt leczniczy OTC)',
+    verdict: 'kupuje',
+    teaser: 'Porównujesz magnez w aptece. Na prostym pudełku widnieje wyraźny napis „Produkt leczniczy”, numer pozwolenia URPL oraz konkretna dawka dobrze przyswajalnego mleczanu magnezu. Jak oceniasz to oznaczenie?',
+    verdictHeadlineKupuje: 'Trafna ocena! To przykład transparentnie oznaczonego produktu leczniczego.',
+    verdictHeadlineSciema: 'Warto przyjrzeć się bliżej – to produkt o wysokim standardzie kontroli (Lek OTC).',
+    verdictSummary: 'Status produktu leczniczego oznacza potwierdzoną badaniami jakość i skuteczność oraz nadzór GIF/URPL. Mimo to każdy lek wymaga przestrzegania dawkowania i przeciwwskazań z ulotki.',
+    pros: [
+      'Status produktu leczniczego (OTC) – potwierdzona zawartość substancji czynnej i kontrola jakości GMP.',
+      'Organiczna, lepiej przyswajalna sól (mleczan magnezu) z jasno podaną dawką jonów Mg²⁺.',
+      'Czytelna informacja o temperaturze przechowywania (poniżej 25°C) oraz pełna ulotka.'
+    ],
+    cons: [
+      'Wymaga przestrzegania przeciwwskazań (np. ciężka niewydolność nerek) i nie powinien być stosowany „na zapas” bez potrzeby.',
+      'Bywa droższy w przeliczeniu na opakowanie niż podstawowe suplementy z tlenkiem magnezu.'
+    ],
+    layers: {
+      chemia: {
+        x: 50, y: 54,
+        title: 'Organiczna sól magnezu i precyzyjna dawka jonów',
+        text: 'Mleczan lub cytrynian magnezu charakteryzują się wyższą biodostępnością niż tani tlenek magnezu. Etykieta wyraźnie odróżnia masę całej soli od realnej dawki jonów magnezu (Mg²⁺).',
+        source: 'Charakterystyka Produktu Leczniczego (ChPL); farmakologia kliniczna'
+      },
+      prawo: {
+        x: 50, y: 80,
+        title: 'Status Produktu Leczniczego (URPL / GIF)',
+        text: 'Przed dopuszczeniem do sprzedaży lek musi przejść procedurę rejestracji w URPL, udowodnić jakość, bezpieczeństwo i skuteczność, a każda seria podlega nadzorowi Głównego Inspektoratu Farmaceutycznego.',
+        source: 'Ustawa – Prawo farmaceutyczne; Rejestr Produktów Leczniczych'
+      },
+      jakosc: {
+        x: 74, y: 26,
+        title: 'Standard wytwarzania GMP i warunki przechowywania',
+        text: 'Produkcja leków odbywa się w rygorystycznym standardzie GMP (Good Manufacturing Practice). Opakowanie podaje dokładną temperaturę przechowywania (do 25°C), co gwarantuje stabilność substancji czynnej.',
+        source: 'Wymagania Dobrej Praktyki Wytwarzania (GMP)'
+      },
+      grafika: {
+        x: 28, y: 34,
+        title: 'Przejrzysty układ informacyjny bez haseł reklamowych',
+        text: 'Widoczna nazwa substancji czynnej, dawka, postać farmaceutyczna oraz oznaczenie „Lek OTC” bez krzykliwych sloganów i niezweryfikowanych pieczątek.',
+        source: 'Rozporządzenie MZ w sprawie wymagań dotyczących oznakowania opakowań produktu leczniczego'
+      }
+    }
+  },
+  {
     id: 'krem-purebio',
+    mainCategory: 'kosmetyki',
     shortName: 'Krem PureBio',
     name: 'Krem „PureBio – 100% Bez Chemii”',
-    category: 'Kosmetyki',
+    category: '✨ Kosmetyki',
     verdict: 'sciema',
-    teaser: 'Widzisz ten słoiczek w drogerii. Beżowe eko-opakowanie, złota pieczątka gwarancji i głośna obietnica braku chemii. Wybierasz go dla wrażliwej cery?',
-    verdictHeadlineSciema: 'Świetny instynkt! To klasyczna pułapka chemofobii.',
-    verdictHeadlineKupuje: 'Ostrożnie – ten zielony listek właśnie Cię uśpił!',
-    verdictSummary: 'Krem bez chemii nie istnieje fizycznie, złota pieczątka to grafika marketingowa, a unijne prawo zakazuje takich haseł. Prześwietl wszystkie 4 warstwy poniżej.',
+    teaser: 'Widzisz ten słoiczek w drogerii. Estetyczne eko-opakowanie, złota pieczątka gwarancji i hasło o całkowitym braku chemii. Jak oceniasz rzetelność komunikatów na etykiecie?',
+    verdictHeadlineSciema: 'Celna obserwacja! Na tej etykiecie kilka komunikatów wymaga krytycznej weryfikacji.',
+    verdictHeadlineKupuje: 'Warto przyjrzeć się bliżej – estetyka „eko” może odwracać uwagę od nieścisłych haseł.',
+    verdictSummary: 'Sam krem może dobrze nawilżać (zawiera masło shea), jednak hasło „100% bez chemii” jest nieścisłe naukowo i niezgodne z unijnymi wytycznymi oświadczeń kosmetycznych.',
+    pros: [
+      'Zawiera sprawdzone emolienty nawilżające (np. masło shea – Butyrospermum Parkii Butter).',
+      'Pełna, zgodna z prawem lista składników INCI umieszczona na etykiecie.'
+    ],
+    cons: [
+      'Hasło „100% bez chemii” jest fizycznie niemożliwe i wykorzystuje lęk przed słowem chemia.',
+      'Zawiera substancje zapachowe (Parfum, Limonene), które mogą podrażniać bardzo wrażliwą cerę.',
+      'Złota pieczątka „Eko Gwarancja” jest własną grafiką bez zewnętrznej certyfikacji (np. COSMOS).'
+    ],
     layers: {
       chemia: {
         x: 50, y: 78,
-        title: 'Mit „100% bez chemii” i alergeny naturalne',
-        text: 'Wszystko, co istnieje – łącznie z wodą (Aqua), masłem shea i ekstraktem roślinnym – składa się ze związków chemicznych. Ponadto naturalne olejki eteryczne (np. Limonene z listy INCI) uczulają statystycznie częściej niż wiele przebadanych składników syntetycznych.',
+        title: 'Nieścisłość hasła „bez chemii” i alergeny zapachowe',
+        text: 'Wszystko, co istnieje – włącznie z wodą (Aqua), masłem shea i ekstraktem roślinnym – składa się ze związków chemicznych. Warto też zauważyć obecność naturalnych składników zapachowych (Limonene), które u części osób wrażliwych mogą powodować reakcje alergiczne.',
         source: 'Baza CosIng Komisji Europejskiej; toksykologia kosmetyczna'
       },
       prawo: {
         x: 42, y: 46,
-        title: 'Niedozwolone oświadczenie kosmetyczne',
-        text: 'Unijne kryteria oświadczeń kosmetycznych zakazują twierdzeń nieprawdziwych (nie da się wyprodukować kremu „bez chemii”) oraz dyskredytowania legalnych, bezpiecznych składników dopuszczonych do obrotu (np. straszenia parabenami).',
+        title: 'Kryteria unijne dla oświadczeń kosmetycznych',
+        text: 'Unijne rozporządzenie wymaga, aby oświadczenia na kosmetykach były zgodne z prawdą i nie dyskredytowały legalnych, przebadanych składników dopuszczonych do obrotu (np. dopuszczonych konserwantów).',
         source: 'Rozporządzenie Komisji (UE) nr 655/2013; Dokument techniczny KE'
       },
       jakosc: {
         x: 76, y: 34,
-        title: 'Pieczątka bez zewnętrznego audytu',
-        text: 'Złota pieczątka „Eko Gwarancja 2026” nie jest akredytowanym certyfikatem (jak COSMOS czy ECOCERT), lecz wymyślonym przez dział marketingu znakiem graficznym bez żadnej niezależnej kontroli.',
+        title: 'Znak własny a niezależny certyfikat',
+        text: 'Złota pieczątka „Eko Gwarancja 2026” nie odwołuje się do akredytowanej jednostki (jak COSMOS czy ECOCERT). Warto traktować ją jako element graficzny, a nie dowód niezależnego audytu.',
         source: 'Standardy certyfikacji COSMOS / ISO 14024'
       },
       grafika: {
         x: 24, y: 34,
-        title: 'Efekt „green-cueing” na opakowaniu',
-        text: 'Połączenie zieleni, papierowej beżowej tekstury i dużego liścia aloesu podświadomie budzi skojarzenie z czystością i bezpieczeństwem, skutecznie odwracając wzrok od drobnego składu INCI na dole.',
+        title: 'Efekt „green-cueing” w projektowaniu opakowań',
+        text: 'Połączenie zieleni, papierowej tekstury i liścia aloesu buduje pozytywne skojarzenie z naturą, co może sprawiać, że konsument rzadziej weryfikuje skład INCI i cenę produktu.',
         source: 'Psychologia opakowań i neuromarketing'
       }
     }
   },
   {
     id: 'suplement-neurocalm',
+    mainCategory: 'suplementy',
     shortName: 'NeuroCalm Forte',
     name: 'Suplement „NeuroCalm Forte – Stop Stresowi”',
-    category: 'Suplementy diety',
+    category: '🧴 Suplementy diety',
     verdict: 'sciema',
-    teaser: 'Przed sesją egzaminacyjną widzisz to pudełko na relacji ulubionego influencera z kodem -20%. Wygląda jak lek z apteki i obiecuje ulgę w nerwicy. Bierzesz?',
-    verdictHeadlineSciema: 'Brawo! Rozpoznałeś suplement udający lek.',
-    verdictHeadlineKupuje: 'Wpadłeś w pułapkę „aptecznego” designu!',
-    verdictSummary: 'To prawnie żywność (suplement diety), nie lek – nie musi mieć badań skuteczności, a obiecywanie leczenia nerwicy jest nielegalne. Zobacz szczegóły pod Rentgenem.',
+    teaser: 'Widzisz to pudełko w poleceniach online z kodem rabatowym -20%. Stylistyka przypomina produkt apteczny, a na froncie obiecuje ulgę w nerwicy. Jak oceniasz przejrzystość tej etykiety?',
+    verdictHeadlineSciema: 'Dobra czujność! Warto odróżnić suplement diety od produktu leczniczego.',
+    verdictHeadlineKupuje: 'Warto sprawdzić drobny druk – mimo „aptecznego” wyglądu to nie jest lek.',
+    verdictSummary: 'Suplementy mogą stanowić uzupełnienie diety, ale w świetle prawa nie są lekami i nie mogą obiecywać leczenia schorzeń takich jak nerwica czy bezsenność.',
+    pros: [
+      'Zawiera znany składnik roślinny (ekstrakt z melisy) oraz magnez w wygodnej formie kapsułek.',
+      'Na opakowaniu umieszczono wymagane prawem określenie „Suplement diety”.'
+    ],
+    cons: [
+      'Obietnica leczenia nerwicy i bezsenności wykracza poza dozwolony prawnie zakres oświadczeń dla żywności/suplementów.',
+      'Zastosowano tlenek magnezu o niższej przyswajalności i nie podano standaryzacji ekstraktu.',
+      'Współpraca z kodem rabatowym wymaga wyraźnego oznaczenia komercyjnego (rekomendacje UOKiK).'
+    ],
     layers: {
       chemia: {
         x: 50, y: 58,
-        title: 'Brak standaryzacji i słaba forma magnezu',
-        text: 'Kapsułka zawiera głównie ekstrakt z melisy i śladowe ilości magnezu w słabo przyswajalnej formie (tlenek magnezu). Brakuje informacji o standaryzacji ekstraktu, więc nie wiadomo, ile substancji aktywnej realnie przyjmujesz.',
+        title: 'Forma chemiczna magnezu i brak standaryzacji',
+        text: 'Warto zwrócić uwagę na formę składnika: tlenek magnezu przyswaja się słabiej niż sole organiczne (np. cytrynian czy mleczan). Brak informacji o standaryzacji ekstraktu z melisy utrudnia ocenę realnej zawartości związków czynnych.',
         source: 'Opinie naukowe EFSA (Europejski Urząd ds. Bezpieczeństwa Żywności)'
       },
       prawo: {
         x: 72, y: 84,
-        title: 'Suplement to żywność – nie wolno mu „leczyć”',
-        text: 'Suplement diety to prawnie środek spożywczy, który przed wejściem na rynek nie przechodzi badań klinicznych skuteczności (wystarczy zgłoszenie do GIS). Przypisywanie mu leczenia nerwicy i bezsenności łamie prawo.',
+        title: 'Suplement diety ma status żywności, nie leku',
+        text: 'Suplement diety wprowadza się do obrotu poprzez powiadomienie GIS – bez obowiązkowych badań klinicznych skuteczności wymaganych dla leków. Przepisy zabraniają przypisywania suplementom właściwości leczenia chorób.',
         source: 'Ustawa o bezpieczeństwie żywności i żywienia; Rozporządzenie (WE) nr 1924/2006'
       },
       jakosc: {
         x: 34, y: 38,
-        title: 'Puste hasło „Polecane przez ekspertów”',
-        text: 'Napis „Polecane przez ekspertów” bez podania, kim są badani eksperci i jak przeprowadzono badanie, nie ma wartości dowodowej. Leki podlegają ścisłemu nadzorowi GIF i normom GMP; suplementy – normom żywnościowym.',
+        title: 'Hasło „Polecane przez ekspertów” bez metodologii',
+        text: 'Ogólna deklaracja bez wskazania grupy ekspertów i metodyki badania ma charakter marketingowy. W przeciwieństwie do leków (nadzór GIF), suplementy podlegają normom bezpieczeństwa żywności.',
         source: 'Rejestr Produktów Leczniczych vs. Rejestr GIS'
       },
       grafika: {
         x: 76, y: 24,
-        title: 'Kamuflaż farmaceutyczny i mikrodruk',
-        text: 'Białe pudełko, czerwony krzyżyk i medyczna typografia celowo upodabniają produkt do leku z apteki. Kluczowy napis „Suplement diety” ukryto mikroskopijną czcionką o słabym kontraście, a obok dodano naklejkę influencera.',
-        source: 'Analiza projektowania opakowań farmaceutycznych; Rekomendacje UOKiK'
+        title: 'Stylistyka medyczna i ekspozycja informacji',
+        text: 'Białe opakowanie, krzyżyk i nazwa „Forte” mogą sugerować status leku, podczas gdy informacja „Suplement diety” ma mniejszy kontrast. Przy zakupie z kodem rabatowym warto sprawdzić, czy polecenie jest reklamą.',
+        source: 'Analiza projektowania opakowań; Rekomendacje Prezesa UOKiK'
       }
     }
   },
   {
     id: 'baton-fitzero',
+    mainCategory: 'zywnosc',
     shortName: 'Baton FitZero*',
     name: 'Baton „FitZero* – Bez Dodatku Cukru”',
-    category: 'Zdrowe odżywianie',
+    category: '🥗 Żywność (Przekąski)',
     verdict: 'sciema',
-    teaser: 'Po treningu łapiesz szybki baton „fit”. Wielkie 0% dodanego cukru i zaledwie 140 kcal!* Wygląda na idealną przekąskę dietetyczną. Wrzucasz do koszyka?',
-    verdictHeadlineSciema: 'Celny strzał! Wyłapałeś pułapkę porcji i daktyli.',
-    verdictHeadlineKupuje: 'Dałeś się nabrać na gwiazdkę i efekt „health halo”!',
-    verdictSummary: 'Cały baton ma 280 kcal (140 kcal to połowa batona!), a aż 42 g w 100 g to cukry proste z pasty daktylowej i syropu. Kliknij warstwy, by zobaczyć jak działa ten trik.',
+    teaser: 'Szybka przekąska po treningu: na froncie „0% dodanego cukru” i „140 kcal!*”. Na odwrocie okazuje się, że 140 kcal dotyczy połowy batona, a bazą jest pasta daktylowa. Jak oceniasz czytelność przekazu?',
+    verdictHeadlineSciema: 'Słuszna uwaga! Warto zawsze porównywać kalorie i cukry w kolumnie na 100 g.',
+    verdictHeadlineKupuje: 'Warto zajrzeć na tył opakowania – kluczowa jest wielkość porcji i zawartość cukrów naturalnych.',
+    verdictSummary: 'Baton może być wygodnym źródłem szybkiej energii (np. na długiej wycieczce górskiej), ale dla osoby szukającej niskocukrowej przekąski front opakowania może być mylący.',
+    pros: [
+      'Nie zawiera dosypanej białej sacharozy – słodycz pochodzi m.in. z owoców (daktyli).',
+      'Szybkie źródło węglowodanów i błonnika, przydatne przy intensywnym wysiłku wytrzymałościowym.'
+    ],
+    cons: [
+      'Wartość „140 kcal” dotyczy połowy batona (30 g), podczas gdy cały baton (60 g) ma 280 kcal.',
+      'Wysoka zawartość cukrów prostych (42 g / 100 g, czyli ok. 25 g w całym batonie) z daktyli i syropu z agawy.',
+      'Obecność oleju palmowego w składzie, mimo sportowego wizerunku na froncie.'
+    ],
     layers: {
       chemia: {
         x: 52, y: 74,
-        title: '„Bez dodatku cukru” ≠ brak cukrów prostych',
-        text: 'Pasta daktylowa (45%) i syrop z agawy dostarczają ogromnej ilości fruktozy i glukozy – ponad 25 g cukru w jednym batonie (ok. 5 łyżeczek!), które w organizmie podnoszą glikemię podobnie jak zwykły cukier.',
+        title: 'Cukry naturalne vs. brak dodanej sacharozy',
+        text: 'Pasta daktylowa (45%) i syrop z agawy dostarczają znacznej ilości glukozy i fruktozy (ponad 25 g cukru w całym batonie). Z punktu widzenia organizmu cukry proste z zagęszczonych syropów również podnoszą glikemię.',
         source: 'NCEŻ – Narodowe Centrum Edukacji Żywieniowej'
       },
       prawo: {
         x: 74, y: 50,
-        title: 'Trik z zaniżoną „porcją” vs. tabela na 100 g',
-        text: 'Prawo pozwala użyć hasła „bez dodatku cukrów”, jeśli nie dosypano sacharozy, ale wymaga dopisku o cukrach naturalnych. Podawanie kalorii dla „porcji 30 g” (pół batona!) jest legalnym, lecz mylącym chwytem – zawsze sprawdzaj kolumnę 100 g.',
+        title: 'Zasady oświadczenia i „sugerowana porcja”',
+        text: 'Hasło „bez dodatku cukrów” wymaga dopisku „Zawiera naturalnie występujące cukry”. Podawanie wartości dla porcji mniejszej niż opakowanie jest dopuszczalne, dlatego najbardziej miarodajna pozostaje kolumna na 100 g.',
         source: 'Rozporządzenie (WE) nr 1924/2006; Rozporządzenie (UE) nr 1169/2011'
       },
       jakosc: {
         x: 28, y: 74,
-        title: 'Kolejność składników zdradza prawdę',
-        text: 'Pierwsze trzy pozycje na liście składników stanowią większość masy produktu (kolejność malejąca). Baton reklamowany jako „fit i proteinowy” składa się głównie z cukru z daktyli oraz oleju palmowego.',
+        title: 'Kolejność składników od największego udziału',
+        text: 'Lista składników jest zawsze uporządkowana malejąco. Pierwsze trzy pozycje (pasta daktylowa, syrop z agawy, olej palmowy) pokazują, że jest to głównie baton energetyczno-węglowodanowy, nie niskokaloryczny.',
         source: 'Rozporządzenie (UE) nr 1169/2011 – zasady znakowania składu'
       },
       grafika: {
         x: 28, y: 34,
         title: 'Efekt aureoli zdrowotnej (Health Halo)',
-        text: 'Ogromne „0%”, dynamiczna sylwetka biegaczki i jaskrawe „140 kcal*” tworzą wrażenie ultrazdrowej przekąski. Gwiazdka odsyłająca do wagi pół porcji jest celowo mikroskopijna.',
+        text: 'Duże „0%” i motyw sportowy budują skojarzenie z produktem dietetycznym, podczas gdy odnośnik gwiazdki wyjaśniający wielkość porcji jest wyraźnie mniejszy.',
         source: 'Ekonomia behawioralna i framing wizualny'
       }
     }
   },
   {
     id: 'woda-alkaline',
+    mainCategory: 'zywnosc',
     shortName: 'Woda pH 9.5',
     name: 'Woda „Alkaline Detox pH 9.5” (14,99 zł)',
-    category: 'Pseudonauka i greenwashing',
+    category: '🥗 Żywność (Napoje)',
     verdict: 'sciema',
-    teaser: 'Designerska butelka za 14,99 zł obiecująca „odkwaszenie organizmu”, „usunięcie toksyn” i „100% przyjazność dla planety”. Płacisz za ten upgrade zwykłej wody?',
-    verdictHeadlineSciema: 'Brawo! Zaoszczędziłeś 13 złotych na zwykłej wodzie.',
-    verdictHeadlineKupuje: 'Uwaga – właśnie zapłaciłeś za czysty „science-washing”!',
-    verdictSummary: 'Żołądek neutralizuje pH 9,5 w kilka sekund, a ogólne hasło „przyjazna planecie” bez dowodu łamie nowe unijne prawo przeciw greenwashingowi. Sprawdź 4 warstwy.',
+    teaser: 'Designerska butelka za 14,99 zł z hasłami „odkwasza organizm”, „usuwa toksyny” i „100% przyjazna planecie”. Jak oceniasz relację obietnic naukowych i ceny?',
+    verdictHeadlineSciema: 'Świetna analiza! Warto oddzielić podstawową funkcję nawodnienia od haseł marketingowych.',
+    verdictHeadlineKupuje: 'Warto zweryfikować te obietnice – z perspektywy fizjologii i ceny płacisz głównie za marketing.',
+    verdictSummary: 'Woda oczywiście bezpiecznie nawadnia organizm, jednak u zdrowego człowieka nie „odkwasza” krwi, a ogólne deklaracje ekologiczne bez dowodu wymagają weryfikacji w świetle prawa UE.',
+    pros: [
+      'Bezpieczny napój bez cukru i kalorii – spełnia podstawową funkcję nawadniania organizmu.',
+      'Wygodna, estetyczna butelka do zabrania w podróż.'
+    ],
+    cons: [
+      'Kwaśne środowisko żołądka (pH 1,5–2) neutralizuje wodę alkaliczną; za pH krwi i usuwanie toksyn odpowiadają nerki, płuca i wątroba.',
+      'Cena (14,99 zł) jest kilkukrotnie wyższa niż zwykłej wody źródlanej lub filtrowanej kranówki o tym samym efekcie nawodnienia.',
+      'Ogólne hasło „100% przyjazna planecie” i własny znaczek ekologiczny bez certyfikatu nie spełniają wymogów Dyrektywy UE 2024/825.'
+    ],
     layers: {
       chemia: {
         x: 50, y: 44,
-        title: 'Fizjologiczny mit „odkwaszania” i detoksu',
-        text: 'Zdrowy organizm precyzyjnie utrzymuje pH krwi (7,35–7,45) dzięki płucom i nerkom. Woda o pH 9,5 natychmiast neutralizuje się w kwaśnym soku żołądkowym (pH ok. 1,5–2) – nie może „odkwasić ciała”, a toksyny usuwają wątroba i nerki.',
+        title: 'Fizjologia pH krwi i rola kwasu żołądkowego',
+        text: 'Zdrowy organizm samodzielnie utrzymuje pH krwi w wąskim zakresie 7,35–7,45 dzięki płucom i nerkom. Woda o wyższym pH zostaje zneutralizowana w żołądku, więc nie zmienia pH krwi ani nie zastępuje pracy wątroby i nerek.',
         source: 'Podstawy fizjologii człowieka; opinie EFSA'
       },
       prawo: {
         x: 50, y: 68,
-        title: 'Unijny zakaz ogólnego greenwashingu',
-        text: 'Nowa unijna dyrektywa anty-greenwashingowa zakazuje ogólnych, nieudowodnionych haseł typu „100% przyjazna planecie” oraz zakazuje stosowania własnych znaków ekologicznych bez niezależnej certyfikacji.',
+        title: 'Dyrektywa UE 2024/825 przeciw ogólnym eko-hasłom',
+        text: 'Przepisy UE ograniczają stosowanie ogólnych deklaracji typu „przyjazna planecie” bez rzetelnego dowodu dla całego cyklu życia produktu oraz własnych znaków ekologicznych bez zewnętrznej certyfikacji.',
         source: 'Dyrektywa (UE) 2024/825 ws. transformacji ekologicznej'
       },
       jakosc: {
         x: 74, y: 78,
-        title: 'Własna eko-naklejka ≠ EU Ecolabel',
-        text: 'Znaczek „Eko-Planet Approved” został zaprojektowany przez samego producenta i nie stoi za nim żaden audyt. Prawdziwe etykietowanie (np. EU Ecolabel) wymaga spełnienia publicznie weryfikowalnych norm.',
+        title: 'Własne logo vs. oficjalne oznakowanie EU Ecolabel',
+        text: 'Znak „Eko-Planet Approved” nie należy do niezależnego, publicznie weryfikowalnego systemu certyfikacji (takiego jak EU Ecolabel czy normy ISO 14024).',
         source: 'System oznakowania EU Ecolabel / ISO 14024'
       },
       grafika: {
         x: 34, y: 30,
-        title: 'Science-washing i iluzja premium',
-        text: 'Minimalistyczny design w stylu „wellness” i laboratoryjnie brzmiąca liczba „pH 9.5” mają zbudować wrażenie naukowej technologii, usprawiedliwiając kilkukrotnie wyższą cenę butelki wody.',
+        title: 'Zjawisko „science-washing” i pozycjonowanie premium',
+        text: 'Minimalistyczny styl oraz wyeksponowany parametr „pH 9.5” tworzą naukowy wizerunek, który uzasadnia znacznie wyższą cenę detaliczną w porównaniu do standardowej wody.',
         source: 'Analiza strategii science-washing w komunikacji marek'
       }
     }
   },
   {
     id: 'mus-owocowy',
+    mainCategory: 'zywnosc',
     shortName: 'Mus E300/E440',
     name: 'Mus owocowy „Jabłko-Porzeczka” (z E300, E330, E440)',
-    category: 'Test na chemofobię (Pułapka odwrócona!)',
+    category: '🥗 Żywność (Test na chemofobię)',
     verdict: 'kupuje',
-    teaser: 'Skromna saszetka bez haseł „fit/superfood”. Na froncie widać aż trzy symbole „E” (E440, E330, E300), a w rogu zielony znak Euroliścia z kodem PL-EKO-01. Wrzucasz do koszyka?',
-    verdictHeadlineKupuje: 'Mistrzostwo! Nie dałeś się wystraszyć symbolom „E”!',
-    verdictHeadlineSciema: 'Złapany na chemofobię! To jedyny w pełni rzetelny produkt w teście.',
-    verdictSummary: 'To celowa „odwrócona pułapka”! Pod strasznymi symbolami kryją się witamina C, kwas cytrynowy i pektyny z jabłek, a znak w rogu to oficjalny certyfikat UE. Prześwietl szczegóły!',
+    teaser: 'Skromna saszetka bez haseł „fit/superfood”. Na froncie wypisano pełny skład z trzema symbolami E (E440, E330, E300), a w rogu widnieje znak Euroliścia z kodem PL-EKO-01. Jak oceniasz ten produkt?',
+    verdictHeadlineKupuje: 'Bardzo dobra ocena! Symbole E nie oznaczają tu zagrożenia, a certyfikat jest oficjalny.',
+    verdictHeadlineSciema: 'Ciekawy przypadek – symbole E często budzą niepokój, choć tu kryją witaminę C i pektyny!',
+    verdictSummary: 'To przykład rzetelnego znakowania: 99% składu to przeciery owocowe, symbole E to zwykłe, przebadane dodatki (witamina C, kwas cytrynowy, pektyny), a Euroliść z kodem jest oficjalnym certyfikatem UE.',
+    pros: [
+      '99% przecierów owocowych bez dosypanego cukru i bez wprowadzających w błąd obietnic zdrowotnych.',
+      'Oficjalny, prawnie kontrolowany certyfikat rolnictwa ekologicznego UE (Euroliść + kod PL-EKO-01).',
+      'Symbole E300 (witamina C), E330 (kwas cytrynowy) i E440 (pektyny) są w pełni bezpieczne i rzetelnie opisane.'
+    ],
+    cons: [
+      'Jak każdy mus owocowy, zawiera naturalne cukry w formie rozdrobnionej (dla zębów i sytości lepiej na co dzień wybierać całe owoce, a mus traktować jako wygodną przekąskę).',
+      'Jednorazowa saszetka wielomateriałowa jest trudniejsza w recyklingu niż świeży owoc.'
+    ],
     layers: {
       chemia: {
         x: 50, y: 56,
-        title: '„Straszne” symbole E to zwykła witamina C i pektyny',
-        text: 'Symbole „E” nie oznaczają trucizny, lecz dokładnie przebadane substancje. E300 to kwas askorbinowy (witamina C chroniąca owoce przed brązowieniem), E330 to kwas cytrynowy, a E440 to pektyny naturalnie występujące w jabłkach.',
+        title: 'Co oznaczają symbole E300, E330 i E440?',
+        text: 'Symbol „E” potwierdza, że dodatek przeszedł ocenę bezpieczeństwa EFSA. E300 to kwas askorbinowy (witamina C chroniąca owoce przed utlenianiem), E330 to kwas cytrynowy, a E440 to pektyny naturalnie obecne w jabłkach.',
         source: 'EFSA – unijny wykaz dodatków do żywności'
       },
       prawo: {
         x: 30, y: 40,
-        title: 'Uczciwe i transparentne znakowanie',
-        text: 'Producent rzetelnie podał skład w kolejności malejącej (99% przecierów owocowych), wskazał dokładną funkcję technologiczną każdego dodatku i zrezygnował z wprowadzających w błąd obietnic zdrowotnych.',
+        title: 'Przejrzyste i zgodne z prawem znakowanie',
+        text: 'Producent uczciwie podał skład w kolejności malejącej, wskazał funkcję technologiczną każdego dodatku i zrezygnował z wyolbrzymionych haseł zdrowotnych.',
         source: 'Rozporządzenie (UE) nr 1169/2011; Rozporządzenie (WE) nr 1333/2008'
       },
       jakosc: {
         x: 72, y: 78,
-        title: 'Prawdziwy, kontrolowany certyfikat UE',
-        text: 'Zielony znak Euroliścia (z białych gwiazdek) wraz z kodem jednostki certyfikującej (PL-EKO-01) to jedyny oficjalny, prawnie chroniony certyfikat żywności ekologicznej w UE, podlegający regularnym kontrolom.',
+        title: 'Oficjalny certyfikat ekologiczny UE (Euroliść)',
+        text: 'Zielony Euroliść umieszczony razem z kodem jednostki certyfikującej (PL-EKO-01) to prawnie chronione oznaczenie potwierdzające coroczne, niezależne kontrole produkcji ekologicznej.',
         source: 'Rozporządzenie (UE) 2018/848 w sprawie produkcji ekologicznej'
       },
       grafika: {
         x: 50, y: 24,
-        title: 'Brak manipulacji – uczciwa prostota',
-        text: 'Brak krzykliwych haseł „100% bez chemii” i brak ukrytych gwiazdek. Ten przykład udowadnia, że skromna etykieta z symbolami E bywa o wiele bardziej rzetelna niż „zielone” opakowanie z pięknymi hasłami.',
+        title: 'Uczciwa prostota zamiast krzykliwych sloganów',
+        text: 'Brak haseł typu „100% bez chemii” i brak ukrytych gwiazdek. Ten produkt pokazuje, że prosty projekt z jawnymi symbolami E bywa bardziej transparentny niż „zielone” opakowanie z ogólnymi obietnicami.',
         source: 'Zasady transparentnego projektowania informacji'
       }
     }
+  }
+];
+
+/* =========================================================================
+   1B. BAZA DANYCH SKANERA: ULOTKI LEKÓW ORAZ CERTYFIKATY / ZNAKI JAKOŚCI
+   ========================================================================= */
+const SCANNER_DRUGS = [
+  {
+    id: 'magnelek-b6',
+    name: 'MagneLek B6 100 mg (tabletki powlekane)',
+    barcode: '5909990012345',
+    status: 'Produkt leczniczy (OTC)',
+    statusType: 'lek',
+    activeSubstance: 'Magnezu mleczan dwuwodny (48 mg jonów Mg²⁺) + Pirydoksyny chlorowodorek (wit. B6 – 5 mg)',
+    storageTemp: 'Przechowywać w temperaturze poniżej 25°C, w oryginalnym opakowaniu w celu ochrony przed wilgocią. Przechowywać w miejscu niewidocznym i niedostępnym dla dzieci.',
+    dosage: 'Dorośli: zwykle 6 do 8 tabletek na dobę w 2–3 dawkach podzielonych, podczas posiłku. Dzieci (powyżej 6 lat): wg masy ciała zgodnie z ulotką lub zaleceniem lekarza.',
+    contraindications: 'Nadwrażliwość na substancje czynne, ciężka niewydolność nerek (klirens kreatyniny < 30 ml/min), hipermagnezemia, jednoczesne stosowanie lewodopy bez inhibitora dekarboksylazy.',
+    pros: [
+      'Status leku gwarantuje przebadaną zawartość substancji czynnej w każdej tabletce (nadzór URPL/GIF).',
+      'Organiczna sól magnezu w połączeniu z witaminą B6 wspierającą jego wchłanianie.'
+    ],
+    cons: [
+      'Wymaga przyjmowania kilku tabletek dziennie w dawkach podzielonych dla pełnej dawki terapeutycznej.',
+      'Możliwe łagodne dolegliwości żołądkowo-jelitowe przy przekroczeniu zalecanej dawki.'
+    ],
+    sourceLabel: 'Rejestr Produktów Leczniczych (URPL / e-Zdrowie)',
+    sourceUrl: 'https://rejestry.ezdrowie.gov.pl/rpl/search/public'
+  },
+  {
+    id: 'ibuprofen-400',
+    name: 'Ibuprofen Max 400 mg (kapsułki miękkie)',
+    barcode: '5909990054321',
+    status: 'Produkt leczniczy (OTC)',
+    statusType: 'lek',
+    activeSubstance: 'Ibuprofen (Ibuprofenum) – 400 mg (NLPZ – niesteroidowy lek przeciwzapalny)',
+    storageTemp: 'Przechowywać w temperaturze poniżej 25°C, chronić przed światłem i wilgocią. Nie zamrażać. Nie przechowywać w łazience ani w nagrzanym samochodzie.',
+    dosage: 'Dorośli i młodzież powyżej 12 lat (masa > 40 kg): 1 kapsułka (400 mg) co 4–6 godzin po posiłku. Maksymalna dawka dobowa bez konsultacji z lekarzem: 1200 mg (3 kapsułki).',
+    contraindications: 'Czynna lub przebyta choroba wrzodowa żołądka/dwunastnicy, uczulenie na NLPZ (np. aspirynę), ciężka niewydolność serca, wątroby lub nerek, III trymestr ciąży, skaza krwotoczna.',
+    pros: [
+      'Szybkie, dobrze udokumentowane działanie przeciwbólowe, przeciwzapalne i przeciwgorączkowe.',
+      'Jasne limity dawkowania i dostępna pełna Charakterystyka Produktu Leczniczego (ChPL).'
+    ],
+    cons: [
+      'Może podrażniać błonę śluzową żołądka (zaleca się przyjmowanie po posiłku i możliwie krótko).',
+      'Wchodzi w interakcje z niektórymi lekami (m.in. przeciwzakrzepowymi i na nadciśnienie).'
+    ],
+    sourceLabel: 'Rejestr Produktów Leczniczych (URPL / e-Zdrowie)',
+    sourceUrl: 'https://rejestry.ezdrowie.gov.pl/rpl/search/public'
+  },
+  {
+    id: 'melatonina-lek',
+    name: 'Melatonina 3 mg (tabletki – Lek OTC)',
+    barcode: '5909990077889',
+    status: 'Produkt leczniczy (OTC)',
+    statusType: 'lek',
+    activeSubstance: 'Melatonina (Melatoninum) – 3 mg',
+    storageTemp: 'Przechowywać w temperaturze poniżej 25°C, w szczelnie zamkniętym opakowaniu, z dala od bezpośredniego światła słonecznego.',
+    dosage: 'W zaburzeniach rytmu snu i czuwania (np. praca zmianowa, zmiana stref czasowych): zwykle 1 tabletka (3 mg) na ok. 1 godzinę przed snem. Nie przekraczać dawki zalecanej w ulotce.',
+    contraindications: 'Nadwrażliwość na składniki, ciąża i okres karmienia piersią (brak wystarczających danych), spożycie alkoholu (osłabia działanie), ostrożność przy chorobach wątroby i depresji.',
+    pros: [
+      'W przeciwieństwie do wielu suplementów z melatoniną, lek gwarantuje stałą, zweryfikowaną dawkę 3 mg.',
+      'Pomocny przy jet-lagu i pracy zmianowej.'
+    ],
+    cons: [
+      'Może powodować poranną senność – nie prowadzić pojazdów bezpośrednio po zażyciu.',
+      'Nie zastępuje higieny snu ani diagnostyki przewlekłej bezsenności.'
+    ],
+    sourceLabel: 'Rejestr Produktów Leczniczych (URPL / e-Zdrowie)',
+    sourceUrl: 'https://rejestry.ezdrowie.gov.pl/rpl/search/public'
+  },
+  {
+    id: 'neurocalm-scan',
+    name: 'NeuroCalm Forte (Suplement diety – kontrast)',
+    barcode: '5901234999001',
+    status: 'Suplement diety (Żywność – GIS)',
+    statusType: 'suplement',
+    activeSubstance: 'Ekstrakt z liści melisy (niestandaryzowany), tlenek magnezu (56 mg)',
+    storageTemp: 'Przechowywać w suchym miejscu w temperaturze pokojowej (15–25°C), w sposób niedostępny dla małych dzieci.',
+    dosage: 'Zalecana porcja do spożycia w ciągu dnia wg producenta: 1 kapsułka dziennie. Uwaga: w przypadku suplementów nie stosuje się pojęcia „dawkowania leczniczego”.',
+    contraindications: 'Brak oficjalnej ulotki ChPL (nie jest lekiem). Osoby w ciąży, karmiące oraz przyjmujące leki uspokajające powinny skonsultować stosowanie z lekarzem lub farmaceutą.',
+    pros: [
+      'Łatwo dostępny bez recepty, prosty w stosowaniu jako uzupełnienie codziennej diety.',
+      'Zawiera łagodny składnik roślinny (melisę).'
+    ],
+    cons: [
+      'To środek spożywczy, nie lek – nie przeszedł badań klinicznych potwierdzających skuteczność w leczeniu stresu czy bezsenności.',
+      'Tlenek magnezu wchłania się słabiej niż organiczne sole magnezu obecne w lekach.'
+    ],
+    sourceLabel: 'Rejestr Produktów (Główny Inspektorat Sanitarny – GIS)',
+    sourceUrl: 'https://powiadomienia.gis.gov.pl/'
+  }
+];
+
+const SCANNER_CERTS = [
+  {
+    id: 'cert-teraz-polska',
+    name: 'Godło Promocyjne „Teraz Polska”',
+    badgeType: 'verified',
+    verdictLabel: 'Rozpoznawalne Godło Konkursowe (Fundacja PGN)',
+    issuer: 'Fundacja Polskiego Godła Promocyjnego (Kapituła Konkursu i eksperci branżowi)',
+    meaning: 'Wyróżnienie przyznawane w corocznym konkursie produktom, usługom i innowacjom wyróżniającym się wysoką jakością rynkową na rynku polskim.',
+    pros: [
+      'Wieloletnia, rozpoznawalna i niezależna procedura konkursowa z udziałem ekspertów branżowych i Kapituły.',
+      'Pomaga zidentyfikować docenione przez rynek polskie produkty i usługi.'
+    ],
+    cons: [
+      'Jest to godło promocyjne jakości rynkowej – NIE jest certyfikatem ekologicznym, medycznym ani potwierdzeniem niskiej zawartości cukru czy naturalności składu.',
+      'Licencja na używanie godła jest czasowa i wymaga odnawiania; nadal warto czytać tabelę wartości odżywczych lub INCI.'
+    ],
+    sourceLabel: 'Fundacja Polskiego Godła Promocyjnego – terazpolska.pl',
+    sourceUrl: 'https://terazpolska.pl/',
+    svg: `<svg viewBox="0 0 120 80" class="w-24 h-16"><rect x="4" y="4" width="112" height="72" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/><path d="M18 22 H102 V38 H18 Z" fill="#ffffff"/><path d="M18 38 H102 V54 H18 Z" fill="#dc2626"/><text x="60" y="34" text-anchor="middle" font-size="11" font-weight="900" fill="#0f172a">TERAZ</text><text x="60" y="50" text-anchor="middle" font-size="11" font-weight="900" fill="#ffffff">POLSKA</text><text x="60" y="67" text-anchor="middle" font-size="7" font-weight="700" fill="#64748b">GODŁO PROMOCYJNE</text></svg>`
+  },
+  {
+    id: 'cert-eurolisc',
+    name: 'Euroliść (Logo produkcji ekologicznej UE)',
+    badgeType: 'official',
+    verdictLabel: 'Oficjalny certyfikat prawny UE',
+    issuer: 'Akredytowane jednostki certyfikujące pod nadzorem IJHARS (z obowiązkowym kodem np. PL-EKO-01)',
+    meaning: 'Jedyny prawnie wiążący w całej UE znak żywności ekologicznej. Potwierdza, że min. 95% składników rolnych pochodzi z kontrolowanych upraw ekologicznych.',
+    pros: [
+      'Obowiązkowe, regularne i niezależne kontrole producenta oraz całego łańcucha dostaw.',
+      'Weryfikowalny kod jednostki certyfikującej (np. PL-EKO-01) oraz informacja o pochodzeniu surowców (Rolnictwo UE / spoza UE).'
+    ],
+    cons: [
+      'Certyfikat ekologiczny potwierdza sposób uprawy, ale nie oznacza automatycznie, że produkt ma mało kalorii lub cukru (np. ekologiczny syrop nadal jest cukrem).',
+      'Znak bez towarzyszącego kodu jednostki certyfikującej wymaga wzmożonej ostrożności.'
+    ],
+    sourceLabel: 'Rozporządzenie (UE) 2018/848 / Komisja Europejska',
+    sourceUrl: 'https://agriculture.ec.europa.eu/farming/organic-farming/organic-logo_pl',
+    svg: `<svg viewBox="0 0 120 80" class="w-24 h-16"><rect x="12" y="8" width="96" height="54" rx="6" fill="#65a30d"/><path d="M34 45 C46 18, 76 16, 92 28 C78 48, 52 52, 34 45 Z" fill="none" stroke="#ffffff" stroke-width="3" stroke-dasharray="4 3.5"/><text x="60" y="75" text-anchor="middle" font-size="9" font-weight="800" fill="#365314">PL-EKO-01</text></svg>`
+  },
+  {
+    id: 'cert-ecolabel',
+    name: 'EU Ecolabel (Stokrotka UE)',
+    badgeType: 'official',
+    verdictLabel: 'Oficjalny certyfikat środowiskowy UE (ISO 14024)',
+    issuer: 'Komisja Europejska / w Polsce: Polskie Centrum Badań i Certyfikacji (PCBC)',
+    meaning: 'Dobrowolny, rygorystyczny certyfikat środowiskowy dla kosmetyków spłukiwanych, detergentów, papieru i usług – bada wpływ produktu w całym cyklu życia (od surowca po utylizację).',
+    pros: [
+      'Niezależny audyt naukowy oparty na normie ISO 14024 (oznakowanie typu I).',
+      'Ogranicza stosowanie substancji uciążliwych dla środowiska wodnego i wymusza recyklingowalność opakowań.'
+    ],
+    cons: [
+      'Nie dotyczy żywności ani suplementów – skupia się głównie na produktach chemicznych, higienicznych i usługach.',
+      'Nie zastępuje indywidualnej oceny tolerancji skóry na dany składnik.'
+    ],
+    sourceLabel: 'System EU Ecolabel (PCBC / Komisja Europejska)',
+    sourceUrl: 'https://environment.ec.europa.eu/topics/circular-economy/eu-ecolabel_en',
+    svg: `<svg viewBox="0 0 120 80" class="w-24 h-16"><rect x="8" y="6" width="104" height="68" rx="10" fill="#f0fdf4" stroke="#86efac" stroke-width="2"/><circle cx="60" cy="34" r="16" fill="#0284c7"/><text x="60" y="39" text-anchor="middle" font-size="14" font-weight="900" fill="#ffffff">ε</text><text x="60" y="63" text-anchor="middle" font-size="9" font-weight="800" fill="#166534">EU ECOLABEL</text></svg>`
+  },
+  {
+    id: 'cert-cosmos',
+    name: 'COSMOS Organic / ECOCERT',
+    badgeType: 'official',
+    verdictLabel: 'Niezależny standard certyfikacji kosmetyków',
+    issuer: 'Międzynarodowe stowarzyszenie COSMOS (m.in. ECOCERT, BDIH, Soil Association)',
+    meaning: 'Jednolity europejski standard potwierdzający minimalny udział składników pochodzenia naturalnego i organicznego oraz restrykcje co do metod przetwarzania i opakowań.',
+    pros: [
+      'Jasne, publicznie dostępne kryteria i coroczny audyt niezależnej jednostki.',
+      'Oddziela kosmetyki z realną kontrolą składu od zwykłych deklaracji marketingowych „bio”.'
+    ],
+    cons: [
+      'Kosmetyk certyfikowany jako organiczny może nadal zawierać naturalne olejki eteryczne, które u osób z alergią wymagają ostrożności.',
+      'Brak certyfikatu nie oznacza, że inny kosmetyk jest gorszy – wiele dobrych dermokosmetyków nie ubiega się o płatną certyfikację.'
+    ],
+    sourceLabel: 'Standard COSMOS (cosmos-standard.org)',
+    sourceUrl: 'https://www.cosmos-standard.org/',
+    svg: `<svg viewBox="0 0 120 80" class="w-24 h-16"><rect x="8" y="6" width="104" height="68" rx="10" fill="#ecfeff" stroke="#67e8f9" stroke-width="2"/><circle cx="60" cy="34" r="17" fill="#0f766e"/><text x="60" y="37" text-anchor="middle" font-size="8.5" font-weight="900" fill="#ffffff">COSMOS</text><text x="60" y="63" text-anchor="middle" font-size="8.5" font-weight="800" fill="#115e59">ORGANIC CERT</text></svg>`
+  },
+  {
+    id: 'cert-wlasny',
+    name: 'Znak własny (np. „Eko Gwarancja / 100% Natura”)',
+    badgeType: 'caution',
+    verdictLabel: 'Znak marketingowy producenta – wymaga weryfikacji',
+    issuer: 'Dział marketingu danego podmiotu (brak niezależnej jednostki certyfikującej)',
+    meaning: 'Element graficzny zaprojektowany bezpośrednio na potrzeby opakowania. Sam w sobie nie potwierdza przejścia zewnętrznego audytu jakościowego ani ekologicznego.',
+    pros: [
+      'Sam produkt może mimo to mieć poprawny skład – warto oceniać go po tabeli i INCI, nie po samym znaczku.'
+    ],
+    cons: [
+      'Brak zewnętrznej kontroli i jasnych, publicznie weryfikowalnych kryteriów przyznania.',
+      'W świetle Dyrektywy UE 2024/825 stosowanie niezweryfikowanych własnych znaków ekologicznych jest ograniczane jako praktyka mogąca wprowadzać konsumentów w błąd.'
+    ],
+    sourceLabel: 'Dyrektywa (UE) 2024/825 / UOKiK',
+    sourceUrl: 'https://uokik.gov.pl/',
+    svg: `<svg viewBox="0 0 120 80" class="w-24 h-16"><rect x="8" y="6" width="104" height="68" rx="10" fill="#fffbeb" stroke="#fcd34d" stroke-width="2"/><circle cx="60" cy="40" r="24" fill="#fbbf24" stroke="#b45309" stroke-width="2" stroke-dasharray="4 3"/><text x="60" y="38" text-anchor="middle" font-size="8" font-weight="900" fill="#78350f">EKO</text><text x="60" y="48" text-anchor="middle" font-size="6.5" font-weight="800" fill="#78350f">GWARANCJA</text></svg>`
+  }
+];
+
+/* =========================================================================
+   1C. BAZA PRODUKTÓW DO PLANERA ZAKUPÓW (Sklepy codzienne + Plusy/Minusy)
+   ========================================================================= */
+const PLANNER_PRODUCTS = [
+  {
+    id: 'plan-krem-ceramidowy',
+    name: 'Krem barierowy z ceramidami i niacynamidem (50 ml)',
+    category: 'kosmetyki',
+    categoryLabel: '✨ Kosmetyk · Krem do twarzy',
+    stores: ['Rossmann', 'Hebe'],
+    price: 29,
+    prefs: ['dobra-cena', 'bezzapachowy', 'prosty-sklad'],
+    ingredients: 'Aqua, Glycerin, Caprylic/Capric Triglyceride, Niacinamide (2%), Ceramide NP, Cholesterol, Panthenol, Squalane, Carbomer, Phenoxyethanol.',
+    pros: [
+      'Dobry stosunek jakości do ceny – zawiera sprawdzone składniki wspierające barierę skórną (ceramidy, niacynamid, pantenol).',
+      'Formuła bezzapachowa (brak Parfum i olejków eterycznych) – odpowiednia także dla skóry wrażliwej.'
+    ],
+    cons: [
+      'Bogatsza konsystencja z trójglicerydami – u osób z bardzo tłustą cerą może być bardziej odpowiedni na noc niż pod makijaż.',
+      'Nie posiada płatnego certyfikatu ekologicznego (co jednak pozwala utrzymać niższą cenę).'
+    ],
+    priceVerdict: 'Płacisz głównie za realne składniki aktywne, a nie za kosztowny marketing.',
+    sourceLabel: 'Baza CosIng (Komisja Europejska)',
+    sourceUrl: 'https://ec.europa.eu/growth/tools-databases/cosing/'
+  },
+  {
+    id: 'plan-krem-eko-premium',
+    name: 'Krem nawilżający „Botanica Organic” z certyfikatem COSMOS (50 ml)',
+    category: 'kosmetyki',
+    categoryLabel: '✨ Kosmetyk · Krem do twarzy',
+    stores: ['Hebe', 'Rossmann'],
+    price: 58,
+    prefs: ['certyfikat-lub-lek'],
+    ingredients: 'Aqua, Aloe Barbadensis Leaf Juice*, Butyrospermum Parkii Butter*, Simmondsia Chinensis Seed Oil*, Cetearyl Alcohol, Glycerin, Parfum (Natural Essential Oils), Limonene, Linalool.',
+    pros: [
+      'Posiada niezależny, weryfikowalny certyfikat COSMOS Organic potwierdzający pochodzenie surowców.',
+      'Przyjemne, naturalne emolienty (masło shea, olej jojoba) i szklany słoiczek łatwiejszy w recyklingu.'
+    ],
+    cons: [
+      'Wyższa cena (58 zł) częściowo wynika z kosztów certyfikacji i szklanego opakowania premium.',
+      'Zawiera naturalne olejki eteryczne (Limonene, Linalool) – przy cerze atopowej lub wrażliwej warto wcześniej wykonać próbę uczuleniową.'
+    ],
+    priceVerdict: 'Dopłacasz za niezależny certyfikat organiczny i opakowanie szklane – dobry wybór, jeśli to dla Ciebie priorytet, lecz podstawowe nawilżenie uzyskasz taniej.',
+    sourceLabel: 'Standard COSMOS / Baza CosIng',
+    sourceUrl: 'https://www.cosmos-standard.org/'
+  },
+  {
+    id: 'plan-krem-spf',
+    name: 'Lekki krem ochronny SPF 50+ bez zapachu (50 ml)',
+    category: 'kosmetyki',
+    categoryLabel: '✨ Kosmetyk · Ochrona UV',
+    stores: ['Rossmann', 'Hebe', 'Apteka'],
+    price: 39,
+    prefs: ['dobra-cena', 'bezzapachowy'],
+    ingredients: 'Aqua, Dibutyl Adipate, Diethylamino Hydroxybenzoyl Hexyl Benzoate, Ethylhexyl Triazone, Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine, Glycerin, Tocopherol.',
+    pros: [
+      'Nowoczesne, fotostabilne filtry organiczne zapewniające wysoką ochronę UVA i UVB.',
+      'Brak substancji zapachowych – mniejsze ryzyko szczypania w okolicy oczu.'
+    ],
+    cons: [
+      'Wymaga nakładania odpowiedniej ilości (ok. 1–1,25 ml na twarz) i reaplikacji przy długiej ekspozycji na słońce.',
+      'Przy cerze mieszanej może wymagać przypudrowania po ok. 15 minutach.'
+    ],
+    priceVerdict: 'Rozsądna cena w klasie nowoczesnych filtrów SPF 50+ (często porównywalny skład do kremów aptecznych za 80+ zł).',
+    sourceLabel: 'Baza CosIng / Zalecenia dermatologiczne UV',
+    sourceUrl: 'https://ec.europa.eu/growth/tools-databases/cosing/'
+  },
+  {
+    id: 'plan-lek-magnez',
+    name: 'MagneLek B6 100 mg – Produkt leczniczy OTC (50 tabl.)',
+    category: 'leki',
+    categoryLabel: '💊 Lek (Produkt leczniczy OTC)',
+    stores: ['Apteka'],
+    price: 24,
+    prefs: ['dobra-cena', 'certyfikat-lub-lek', 'prosty-sklad'],
+    ingredients: 'Substancje czynne: Magnezu mleczan dwuwodny (48 mg jonów Mg²⁺), Pirydoksyny chlorowodorek (5 mg). Substancje pomocnicze wg ChPL.',
+    pros: [
+      'Status leku (URPL) – potwierdzona badaniami dawka i jakość każdej partii.',
+      'Dobrze przyswajalna forma organiczna (mleczan magnezu) w przystępnej cenie.'
+    ],
+    cons: [
+      'Dostępny wyłącznie w aptece (lub punkcie aptecznym).',
+      'Jak każdy lek wymaga zapoznania się z przeciwwskazaniami w ulotce (np. choroby nerek).'
+    ],
+    priceVerdict: 'Wysoka przewidywalność składu i dawki – często korzystniejszy koszt realnie przyswojonego magnezu niż w suplementach.',
+    sourceLabel: 'Rejestr Produktów Leczniczych (URPL)',
+    sourceUrl: 'https://rejestry.ezdrowie.gov.pl/rpl/search/public'
+  },
+  {
+    id: 'plan-lek-witd',
+    name: 'Witamina D3 2000 IU – Produkt leczniczy OTC (60 tabl.)',
+    category: 'leki',
+    categoryLabel: '💊 Lek (Produkt leczniczy OTC)',
+    stores: ['Apteka'],
+    price: 22,
+    prefs: ['dobra-cena', 'certyfikat-lub-lek', 'prosty-sklad'],
+    ingredients: 'Substancja czynna: Cholekalcyferol (witamina D3) 50 µg (2000 IU).',
+    pros: [
+      'Status produktu leczniczego zapewnia kontrolę stabilności witaminy D3 do końca terminu ważności.',
+      'Dawka 2000 IU odpowiada standardowym rekomendacjom profilaktycznym dla większości dorosłych w Polsce w okresie jesienno-zimowym.'
+    ],
+    cons: [
+      'W przypadku stwierdzonego dużego niedoboru dawkę należy dobrać indywidualnie z lekarzem na podstawie badania 25(OH)D.',
+      'Wymaga przyjmowania z posiłkiem zawierającym tłuszcz dla lepszego wchłaniania.'
+    ],
+    priceVerdict: 'Bardzo korzystny koszt miesięcznej suplementacji przy pełnej kontroli farmaceutycznej.',
+    sourceLabel: 'Wytyczne suplementacji wit. D w Polsce / URPL',
+    sourceUrl: 'https://rejestry.ezdrowie.gov.pl/rpl/search/public'
+  },
+  {
+    id: 'plan-supl-omega',
+    name: 'Suplement Omega-3 (EPA 330 mg / DHA 220 mg, wskaźnik TOTOX < 10)',
+    category: 'suplementy',
+    categoryLabel: '🧴 Suplement diety',
+    stores: ['Apteka', 'Rossmann'],
+    price: 45,
+    prefs: ['prosty-sklad'],
+    ingredients: 'Olej z ryb pelagicznych standaryzowany na 65% kwasów Omega-3 (EPA 330 mg, DHA 220 mg w 1 kapsułce), przeciwutleniacz: mieszanina tokoferoli (witamina E), żelatyna.',
+    pros: [
+      'Jawnie podana konkretna zawartość EPA i DHA (nie tylko ogólna masa oleju rybiego) oraz niski parametr świeżości oleju (TOTOX).',
+      'Przydatne uzupełnienie diety u osób rzadko jedzących tłuste ryby morskie.'
+    ],
+    cons: [
+      'Ma status suplementu diety (żywności), a nie leku – jakość zależy od transparentności i badań udostępnianych przez producenta.',
+      'Kapsułka żelatynowa nie jest odpowiednia dla wegan (alternatywa: olej z mikroalg).'
+    ],
+    priceVerdict: 'Wyższa cena niż najtańsze kapsułki z marketu, ale wyższe stężenie realnego EPA+DHA w jednej kapsułce.',
+    sourceLabel: 'Opinie naukowe EFSA ws. EPA i DHA',
+    sourceUrl: 'https://www.efsa.europa.eu/'
+  },
+  {
+    id: 'plan-zywnosc-skyr',
+    name: 'Jogurt naturalny typu Skyr (150 g)',
+    category: 'zywnosc',
+    categoryLabel: '🥗 Żywność · Nabiał',
+    stores: ['Biedronka', 'Lidl'],
+    price: 3.5,
+    prefs: ['dobra-cena', 'prosty-sklad'],
+    ingredients: 'Mleko pasteryzowane odtłuszczone, żywe kultury bakterii jogurtowych. Wartość w 100 g: 64 kcal, Białko 12 g, Cukry 4,1 g (wyłącznie naturalna laktoza).',
+    pros: [
+      'Bardzo krótki, przejrzysty skład (tylko 2 składniki) i wysoka zawartość białka (18 g w kubeczku).',
+      'Bardzo niski koszt porcji białka bez dopłaty za etykiety „Protein / Fit”.'
+    ],
+    cons: [
+      'Zawiera naturalną laktozę (osoby z nietolerancją powinny wybrać wariant bez laktozy).',
+      'Kwaśny, neutralny smak – wymaga samodzielnego dodania owoców lub orzechów zamiast gotowego wsadu.'
+    ],
+    priceVerdict: 'Jeden z najlepszych stosunków wartości odżywczej do ceny w codziennych dyskontach.',
+    sourceLabel: 'NCEŻ – Narodowe Centrum Edukacji Żywieniowej',
+    sourceUrl: 'https://ncez.pzh.gov.pl/'
+  },
+  {
+    id: 'plan-zywnosc-mus-eko',
+    name: 'Mus owocowy „Jabłko-Porzeczka” EKO (100 g, z E300/E440)',
+    category: 'zywnosc',
+    categoryLabel: '🥗 Żywność · Przekąski',
+    stores: ['Biedronka', 'Lidl', 'Rossmann'],
+    price: 4.5,
+    prefs: ['dobra-cena', 'certyfikat-lub-lek', 'prosty-sklad'],
+    ingredients: 'Przecier jabłkowy* (75%), przecier z czarnej porzeczki* (24%), substancja żelująca: E440 (pektyny), regulator kwasowości: E330, przeciwutleniacz: E300 (witamina C). *Certyfikat PL-EKO-01.',
+    pros: [
+      '99% owoców, oficjalny unijny certyfikat Euroliścia (PL-EKO-01) i bezpieczne dodatki (witamina C i pektyny).',
+      'Uczciwa etykieta bez wyolbrzymionych haseł marketingowych.'
+    ],
+    cons: [
+      'Rozdrobnione owoce sycą krócej niż całe jabłko i mają wyższy indeks glikemiczny.',
+      'W cenie ok. 4,50 zł za 100 g jest droższy niż zakup świeżych jabłek luzem (płacisz za wygodę podania i certyfikat EKO).'
+    ],
+    priceVerdict: 'Dobra, uczciwa przekąska w podróży; na co dzień w domu korzystniej cenowo i zdrowotnie wypadają całe owoce.',
+    sourceLabel: 'EFSA / Rozporządzenie (UE) 2018/848',
+    sourceUrl: 'https://agriculture.ec.europa.eu/farming/organic-farming/organic-logo_pl'
   }
 ];
 
@@ -429,6 +887,29 @@ const QUESTIONS = [
    ========================================================================= */
 function getProductSVG(productId) {
   switch (productId) {
+    case 'magnelek-b6':
+      return `
+        <svg viewBox="0 0 320 400" class="w-full h-full drop-shadow-xl" aria-label="Opakowanie MagneLek B6">
+          <rect x="46" y="42" width="228" height="316" rx="16" fill="#ffffff" stroke="#94a3b8" stroke-width="3"/>
+          <rect x="46" y="42" width="228" height="58" rx="14" fill="#be123c"/>
+          <rect x="46" y="80" width="228" height="20" fill="#be123c"/>
+          <text x="68" y="76" font-size="11" font-weight="900" fill="#ffffff" letter-spacing="1.2">PRODUKT LECZNICZY (OTC)</text>
+          <rect x="216" y="56" width="42" height="24" rx="6" fill="#ffffff"/>
+          <text x="237" y="72" text-anchor="middle" font-size="9" font-weight="900" fill="#be123c">GMP</text>
+          <text x="160" y="138" text-anchor="middle" font-size="25" font-weight="900" fill="#0f172a">MagneLek B6</text>
+          <text x="160" y="160" text-anchor="middle" font-size="13" font-weight="800" fill="#be123c">48 mg jonów Mg²⁺ + 5 mg wit. B6</text>
+          <rect x="66" y="178" width="188" height="56" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+          <text x="160" y="198" text-anchor="middle" font-size="9.5" font-weight="800" fill="#1e293b">Substancja czynna:</text>
+          <text x="160" y="213" text-anchor="middle" font-size="9" fill="#334155">Magnezu mleczan dwuwodny</text>
+          <text x="160" y="226" text-anchor="middle" font-size="8.5" fill="#475569">(sól organiczna · 50 tabletek powlekanych)</text>
+          <rect x="66" y="248" width="188" height="44" rx="10" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1.5"/>
+          <text x="160" y="266" text-anchor="middle" font-size="8.5" font-weight="800" fill="#0369a1">🌡️ Przechowywać w temp. poniżej 25°C</text>
+          <text x="160" y="280" text-anchor="middle" font-size="8" fill="#075985">Przed użyciem zapoznaj się z ulotką</text>
+          <text x="160" y="320" text-anchor="middle" font-size="8.5" font-weight="700" fill="#334155">Pozwolenie URPL nr: 12345 (Nadzór GIF)</text>
+          <text x="160" y="340" text-anchor="middle" font-size="7.5" fill="#64748b">Lek wydawany bez przepisu lekarza – OTC</text>
+        </svg>
+      `;
+
     case 'krem-purebio':
       return `
         <svg viewBox="0 0 320 400" class="w-full h-full drop-shadow-xl" aria-label="Opakowanie Kremu PureBio">
@@ -564,20 +1045,24 @@ function getProductSVG(productId) {
   }
 }
 
-/* =========================================================================
-   4. STAN APLIKACJI I BEZPIECZNY ZAPIS W localStorage
-   ========================================================================= */
-const STORAGE_KEY = 'etykieta_bez_sciemy_state_v1';
+const STORAGE_KEY = 'etykieta_bez_sciemy_state_v2';
 
 let appState = {
   activeTab: 'xray',
   currentProductIndex: 0,
+  xrayCategoryFilter: 'all',
   activeLayerKey: 'chemia',
   inspected: {}, // Mapa: productId -> { userVote: 'kupuje'|'sciema', visitedLayers: [] }
   bestQuizPct: null,
   bestQuizRank: null,
-  forumFeedbacks: []
+  forumFeedbacks: [],
+  scannerMode: 'drugs',
+  activeDrugScanId: 'magnelek-b6',
+  activeCertScanId: 'cert-teraz-polska',
+  shoppingList: [] // Tablica obiektów { id, name, price, store, checked }
 };
+
+let activeCameraStream = null;
 
 function loadState() {
   try {
@@ -621,6 +1106,9 @@ function showToast(message, type = 'success') {
 }
 
 function switchTab(tabId) {
+  if (appState.activeTab === 'scanner' && tabId !== 'scanner') {
+    stopCamera();
+  }
   appState.activeTab = tabId;
   document.querySelectorAll('.tab-view').forEach(section => section.classList.add('hidden'));
 
@@ -630,8 +1118,8 @@ function switchTab(tabId) {
   document.querySelectorAll('.nav-tab').forEach(btn => {
     const isActive = btn.dataset.tab === tabId;
     btn.className = isActive
-      ? 'nav-tab flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap bg-white text-slate-900 shadow-sm ring-1 ring-slate-200/80'
-      : 'nav-tab flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap text-slate-600 hover:text-slate-900 hover:bg-white/60';
+      ? 'nav-tab flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap bg-white text-slate-900 shadow-sm ring-1 ring-slate-200/80'
+      : 'nav-tab flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap text-slate-600 hover:text-slate-900 hover:bg-white/60';
   });
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -642,6 +1130,13 @@ function updateNavBadges() {
   document.getElementById('nav-xray-badge').textContent = `${inspectedCount}/${PRODUCTS.length}`;
   document.getElementById('xray-progress-text').textContent = `${inspectedCount} z ${PRODUCTS.length}`;
   document.getElementById('xray-progress-bar').style.width = `${(inspectedCount / PRODUCTS.length) * 100}%`;
+
+  const cartBadge = document.getElementById('nav-cart-badge');
+  if (cartBadge) {
+    const cartCount = appState.shoppingList ? appState.shoppingList.length : 0;
+    cartBadge.textContent = String(cartCount);
+    cartBadge.classList.toggle('hidden', cartCount === 0);
+  }
 
   const quizBadge = document.getElementById('nav-quiz-badge');
   if (appState.bestQuizPct !== null) {
@@ -664,6 +1159,10 @@ function renderProductSelector() {
   strip.innerHTML = '';
 
   PRODUCTS.forEach((prod, idx) => {
+    if (appState.xrayCategoryFilter !== 'all' && prod.mainCategory !== appState.xrayCategoryFilter) {
+      return;
+    }
+
     const isCurrent = idx === appState.currentProductIndex;
     const isDone = Boolean(appState.inspected[prod.id]);
 
@@ -680,7 +1179,7 @@ function renderProductSelector() {
     btn.innerHTML = `
       <div class="min-w-0">
         <div class="text-[11px] font-bold uppercase tracking-wider ${isCurrent ? 'text-emerald-100' : 'text-slate-400'}">
-          Produkt ${idx + 1}
+          ${prod.mainCategory.toUpperCase()}
         </div>
         <div class="text-sm font-extrabold truncate">${prod.shortName}</div>
       </div>
@@ -700,6 +1199,14 @@ function renderProductSelector() {
     });
 
     strip.appendChild(btn);
+  });
+
+  // Aktualizacja stylu przycisków filtra kategorii
+  document.querySelectorAll('.xray-cat-pill').forEach(pill => {
+    const active = pill.dataset.xrayCat === appState.xrayCategoryFilter;
+    pill.classList.toggle('ring-2', active);
+    pill.classList.toggle('ring-slate-900', active);
+    pill.classList.toggle('font-extrabold', active);
   });
 }
 
@@ -860,17 +1367,23 @@ function renderXrayView() {
       iconBox.className = 'w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shrink-0 bg-emerald-100 text-emerald-700';
       iconBox.textContent = '✅';
       badge.className = 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-extrabold uppercase tracking-wide mb-1 bg-emerald-100 text-emerald-800';
-      badge.textContent = product.verdict === 'sciema' ? 'Trafna ocena · To była ŚCIEMA' : 'Trafna ocena · Produkt RZETELNY';
+      badge.textContent = product.verdict === 'sciema' ? 'Trafna obserwacja · Elementy do weryfikacji' : 'Trafna ocena · Przejrzyste oznaczenia';
     } else {
-      iconBox.className = 'w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shrink-0 bg-rose-100 text-rose-700';
+      iconBox.className = 'w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shrink-0 bg-amber-100 text-amber-800';
       iconBox.textContent = '💡';
-      badge.className = 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-extrabold uppercase tracking-wide mb-1 bg-rose-100 text-rose-800';
-      badge.textContent = product.verdict === 'sciema' ? 'Pułapka zadziałała · To była ŚCIEMA' : 'Chemofobia zadziałała · Ten produkt jest OK!';
+      badge.className = 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-extrabold uppercase tracking-wide mb-1 bg-amber-100 text-amber-900';
+      badge.textContent = product.verdict === 'sciema' ? 'Warto wiedzieć · Zauważone haczyki marketingowe' : 'Warto wiedzieć · Oznaczenia są rzetelne';
     }
 
     document.getElementById('verdict-headline').textContent =
       record.userVote === 'sciema' ? product.verdictHeadlineSciema : product.verdictHeadlineKupuje;
     document.getElementById('verdict-summary').textContent = product.verdictSummary;
+
+    // Renderowanie neutralnej listy Plusów i Kwestii do uwagi
+    const prosList = document.getElementById('verdict-pros-list');
+    const consList = document.getElementById('verdict-cons-list');
+    prosList.innerHTML = (product.pros || []).map(item => `<li>${item}</li>`).join('');
+    consList.innerHTML = (product.cons || []).map(item => `<li>${item}</li>`).join('');
 
     renderLayerInspector(product, record);
 
@@ -889,180 +1402,411 @@ function renderXrayView() {
 }
 
 /* =========================================================================
-   7. SILNIK MODUŁU 2: QUIZ „SPRAWDŹ SIĘ!”
+   7B. SILNIK MODUŁU SKANER / APARAT (Leki + Certyfikaty)
    ========================================================================= */
-let quizSession = {
-  category: 'all',
-  questions: [],
-  currentIndex: 0,
-  score: 0,
-  answered: false,
-  catStats: {}
-};
+async function startCamera() {
+  const videoEl = document.getElementById('camera-video');
+  const placeholder = document.getElementById('scanner-placeholder');
+  const uploadedImg = document.getElementById('scanner-uploaded-img');
+  const toggleBtn = document.getElementById('btn-toggle-camera');
+  const statusTag = document.getElementById('scanner-status-tag');
 
-function startQuiz(category) {
-  const pool = category === 'all'
-    ? [...QUESTIONS]
-    : QUESTIONS.filter(q => q.category === category);
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    showToast('Przeglądarka nie udostępnia aparatu – skorzystaj z próbek lub wgraj zdjęcie.', 'error');
+    return;
+  }
 
-  quizSession = {
-    category,
-    questions: pool,
-    currentIndex: 0,
-    score: 0,
-    answered: false,
-    catStats: {}
-  };
-
-  document.getElementById('quiz-intro').classList.add('hidden');
-  document.getElementById('quiz-summary').classList.add('hidden');
-  document.getElementById('quiz-active').classList.remove('hidden');
-
-  renderQuizQuestion();
+  try {
+    activeCameraStream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: 'environment' },
+      audio: false
+    });
+    videoEl.srcObject = activeCameraStream;
+    videoEl.classList.remove('hidden');
+    placeholder.classList.add('hidden');
+    uploadedImg.classList.add('hidden');
+    toggleBtn.textContent = '⏹ Wyłącz aparat';
+    toggleBtn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 transition-colors';
+    statusTag.textContent = 'Aparat aktywny – nakieruj etykietę lub wybierz próbkę poniżej';
+    showToast('Aparat uruchomiony! Możesz też przetestować próbki 1-klikiem.');
+  } catch (err) {
+    console.warn('Brak dostępu do kamery:', err);
+    showToast('Brak zgody na aparat lub brak kamery. Działa tryb symulacji i wgrywania zdjęć.', 'error');
+  }
 }
 
-function renderQuizQuestion() {
-  const q = quizSession.questions[quizSession.currentIndex];
-  const total = quizSession.questions.length;
-  quizSession.answered = false;
+function stopCamera() {
+  if (activeCameraStream) {
+    activeCameraStream.getTracks().forEach(track => track.stop());
+    activeCameraStream = null;
+  }
+  const videoEl = document.getElementById('camera-video');
+  const placeholder = document.getElementById('scanner-placeholder');
+  const toggleBtn = document.getElementById('btn-toggle-camera');
+  const statusTag = document.getElementById('scanner-status-tag');
+  if (videoEl) {
+    videoEl.srcObject = null;
+    videoEl.classList.add('hidden');
+  }
+  if (placeholder && document.getElementById('scanner-uploaded-img').classList.contains('hidden')) {
+    placeholder.classList.remove('hidden');
+  }
+  if (toggleBtn) {
+    toggleBtn.textContent = '📷 Włącz aparat';
+    toggleBtn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 transition-colors';
+  }
+  if (statusTag) {
+    statusTag.textContent = 'Gotowy do rozpoznawania kodów i znaków';
+  }
+}
 
-  document.getElementById('quiz-cat-pill').textContent = CATEGORY_LABELS[q.category];
-  document.getElementById('quiz-type-pill').textContent = q.type;
-  document.getElementById('quiz-counter').textContent = `Pytanie ${quizSession.currentIndex + 1} z ${total}`;
-  document.getElementById('quiz-live-score').textContent = `Punkty: ${quizSession.score}`;
-  document.getElementById('quiz-progress-bar').style.width = `${((quizSession.currentIndex + 1) / total) * 100}%`;
-  document.getElementById('quiz-question-text').textContent = q.question;
+function renderScannerView() {
+  // Przełączniki trybu
+  document.querySelectorAll('.scanner-mode-btn').forEach(btn => {
+    const active = btn.dataset.scannerMode === appState.scannerMode;
+    btn.className = active
+      ? 'scanner-mode-btn px-4 py-2 rounded-xl text-sm font-bold bg-white text-slate-900 shadow-sm'
+      : 'scanner-mode-btn px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900';
+  });
 
-  const feedbackBox = document.getElementById('quiz-feedback-box');
-  const nextBtn = document.getElementById('quiz-next-btn');
-  feedbackBox.classList.add('hidden');
-  nextBtn.classList.add('hidden');
-  nextBtn.textContent = quizSession.currentIndex === total - 1 ? 'Zobacz swój wynik →' : 'Następne pytanie →';
+  const samplesGrid = document.getElementById('scanner-samples-grid');
+  const samplesLabel = document.getElementById('scanner-samples-label');
+  samplesGrid.innerHTML = '';
 
-  const optionsContainer = document.getElementById('quiz-options-container');
-  optionsContainer.innerHTML = '';
+  if (appState.scannerMode === 'drugs') {
+    samplesLabel.textContent = 'Zeskanuj przykładowy lek / suplement:';
+    SCANNER_DRUGS.forEach(drug => {
+      const isSelected = drug.id === appState.activeDrugScanId;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = `p-3 rounded-2xl border text-left transition-all ${
+        isSelected
+          ? 'bg-emerald-50 border-emerald-500 ring-2 ring-emerald-200'
+          : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
+      }`;
+      btn.innerHTML = `
+        <div class="flex items-center justify-between gap-1 mb-1">
+          <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full ${
+            drug.statusType === 'lek' ? 'bg-rose-100 text-rose-800' : 'bg-amber-100 text-amber-800'
+          }">${drug.statusType === 'lek' ? '💊 LEK OTC' : '🧴 SUPLEMENT'}</span>
+          <span class="text-[10px] font-mono text-slate-400">${drug.barcode.slice(-5)}</span>
+        </div>
+        <div class="text-xs font-extrabold text-slate-900 leading-snug">${drug.name}</div>
+      `;
+      btn.addEventListener('click', () => {
+        appState.activeDrugScanId = drug.id;
+        document.getElementById('scanner-status-tag').textContent = `Rozpoznano kod: ${drug.barcode}`;
+        renderScannerView();
+      });
+      samplesGrid.appendChild(btn);
+    });
+    renderDrugScanResult();
+  } else {
+    samplesLabel.textContent = 'Zeskanuj znak / logo certyfikatu:';
+    SCANNER_CERTS.forEach(cert => {
+      const isSelected = cert.id === appState.activeCertScanId;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = `p-3 rounded-2xl border text-left flex items-center gap-3 transition-all ${
+        isSelected
+          ? 'bg-emerald-50 border-emerald-500 ring-2 ring-emerald-200'
+          : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
+      }`;
+      btn.innerHTML = `
+        <div class="shrink-0 scale-75 -m-3">${cert.svg}</div>
+        <div class="min-w-0">
+          <div class="text-xs font-extrabold text-slate-900 leading-snug">${cert.name}</div>
+          <div class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">${cert.verdictLabel}</div>
+        </div>
+      `;
+      btn.addEventListener('click', () => {
+        appState.activeCertScanId = cert.id;
+        document.getElementById('scanner-status-tag').textContent = `Rozpoznano znak: ${cert.name}`;
+        renderScannerView();
+      });
+      samplesGrid.appendChild(btn);
+    });
+    renderCertScanResult();
+  }
+}
 
-  const letters = ['A', 'B', 'C', 'D'];
-  q.options.forEach((optText, idx) => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'quiz-opt-btn w-full flex items-center gap-4 p-4 rounded-2xl border-2 border-slate-200 bg-white hover:border-indigo-400 hover:bg-indigo-50/40 text-left transition-all';
-    btn.innerHTML = `
-      <span class="w-9 h-9 rounded-xl bg-slate-100 text-slate-700 font-extrabold text-sm flex items-center justify-center shrink-0">${letters[idx]}</span>
-      <span class="text-sm sm:text-base font-semibold text-slate-800">${optText}</span>
+function renderDrugScanResult() {
+  const drug = SCANNER_DRUGS.find(d => d.id === appState.activeDrugScanId) || SCANNER_DRUGS[0];
+  const container = document.getElementById('scanner-result-container');
+  const isDrug = drug.statusType === 'lek';
+
+  container.innerHTML = `
+    <div class="animate-fade-in">
+      <div class="flex flex-wrap items-start justify-between gap-3 pb-4 border-b border-slate-200">
+        <div>
+          <span class="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full ${
+            isDrug ? 'bg-rose-100 text-rose-800 border border-rose-200' : 'bg-amber-100 text-amber-900 border border-amber-200'
+          }">
+            ${isDrug ? '💊 Produkt leczniczy (URPL / GIF)' : '🧴 Suplement diety (Żywność – GIS)'}
+          </span>
+          <h2 class="text-2xl font-extrabold text-slate-900 mt-2">${drug.name}</h2>
+          <p class="text-xs text-slate-500 mt-1"><strong>Substancja / Skład:</strong> ${drug.activeSubstance}</p>
+        </div>
+        <span class="text-xs font-mono font-bold bg-slate-100 text-slate-600 px-3 py-1.5 rounded-xl border border-slate-200">EAN: ${drug.barcode}</span>
+      </div>
+
+      <!-- 3 kluczowe kafle ulotkowe: Temperatura, Dawkowanie, Przeciwwskazania -->
+      <div class="grid grid-cols-1 gap-3.5 my-5">
+        <div class="p-4 rounded-2xl bg-sky-50/70 border border-sky-200">
+          <div class="text-xs font-extrabold uppercase tracking-wider text-sky-900 mb-1">🌡️ Temperatura i warunki przechowywania</div>
+          <p class="text-sm text-slate-700 leading-relaxed">${drug.storageTemp}</p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-indigo-50/70 border border-indigo-200">
+          <div class="text-xs font-extrabold uppercase tracking-wider text-indigo-900 mb-1">⏱️ Dawkowanie / Zalecana porcja</div>
+          <p class="text-sm text-slate-700 leading-relaxed">${drug.dosage}</p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-rose-50/70 border border-rose-200">
+          <div class="text-xs font-extrabold uppercase tracking-wider text-rose-900 mb-1">⚠️ Główne przeciwwskazania i środki ostrożności</div>
+          <p class="text-sm text-slate-700 leading-relaxed">${drug.contraindications}</p>
+        </div>
+      </div>
+
+      <!-- Neutralna ocena: Plusy / Na co zwrócić uwagę -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-5">
+        <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200">
+          <div class="text-xs font-extrabold uppercase text-emerald-800 mb-1.5">✓ Plusy</div>
+          <ul class="text-xs text-slate-700 space-y-1.5 list-disc list-inside leading-relaxed">
+            ${drug.pros.map(p => `<li>${p}</li>`).join('')}
+          </ul>
+        </div>
+        <div class="p-4 rounded-2xl bg-amber-50/60 border border-amber-200">
+          <div class="text-xs font-extrabold uppercase text-amber-900 mb-1.5">⚖️ Na co zwrócić uwagę</div>
+          <ul class="text-xs text-slate-700 space-y-1.5 list-disc list-inside leading-relaxed">
+            ${drug.cons.map(c => `<li>${c}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-200 text-xs text-slate-500">
+        <span>ℹ️ Informacja edukacyjna – zawsze sprawdź oficjalną ulotkę dołączoną do opakowania.</span>
+        <a href="${drug.sourceUrl}" target="_blank" rel="noopener noreferrer" class="font-bold text-emerald-700 hover:underline">
+          📖 ${drug.sourceLabel} ↗
+        </a>
+      </div>
+    </div>
+  `;
+}
+
+function renderCertScanResult() {
+  const cert = SCANNER_CERTS.find(c => c.id === appState.activeCertScanId) || SCANNER_CERTS[0];
+  const container = document.getElementById('scanner-result-container');
+
+  const badgeStyle = cert.badgeType === 'official'
+    ? 'bg-emerald-100 text-emerald-900 border-emerald-300'
+    : cert.badgeType === 'verified'
+      ? 'bg-sky-100 text-sky-900 border-sky-300'
+      : 'bg-amber-100 text-amber-900 border-amber-300';
+
+  container.innerHTML = `
+    <div class="animate-fade-in">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-5 pb-5 border-b border-slate-200">
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0">
+          ${cert.svg}
+        </div>
+        <div>
+          <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-extrabold border ${badgeStyle}">
+            ${cert.verdictLabel}
+          </span>
+          <h2 class="text-2xl font-extrabold text-slate-900 mt-2">${cert.name}</h2>
+          <p class="text-xs text-slate-600 mt-1"><strong>Podmiot przyznający / nadzorujący:</strong> ${cert.issuer}</p>
+        </div>
+      </div>
+
+      <div class="my-5 p-4 rounded-2xl bg-slate-50 border border-slate-200">
+        <div class="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-1">Co oznacza ten znak na opakowaniu?</div>
+        <p class="text-sm text-slate-800 leading-relaxed">${cert.meaning}</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-5">
+        <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200">
+          <div class="text-xs font-extrabold uppercase text-emerald-800 mb-1.5">✓ Co realnie potwierdza (Plusy)</div>
+          <ul class="text-xs text-slate-700 space-y-1.5 list-disc list-inside leading-relaxed">
+            ${cert.pros.map(p => `<li>${p}</li>`).join('')}
+          </ul>
+        </div>
+        <div class="p-4 rounded-2xl bg-amber-50/60 border border-amber-200">
+          <div class="text-xs font-extrabold uppercase text-amber-900 mb-1.5">⚖️ Czego NIE gwarantuje (Na co zwrócić uwagę)</div>
+          <ul class="text-xs text-slate-700 space-y-1.5 list-disc list-inside leading-relaxed">
+            ${cert.cons.map(c => `<li>${c}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-2 pt-4 border-t border-slate-200 text-xs">
+        <span class="text-slate-500">Weryfikacja w oparciu o standardy UE i oficjalne wykazy.</span>
+        <a href="${cert.sourceUrl}" target="_blank" rel="noopener noreferrer" class="font-bold text-emerald-700 hover:underline">
+          📖 Źródło: ${cert.sourceLabel} ↗
+        </a>
+      </div>
+    </div>
+  `;
+}
+
+/* =========================================================================
+   7C. SILNIK MODUŁU PLANER ZAKUPÓW (Ankieta, Sklepy, Lista Zakupów)
+   ========================================================================= */
+function renderPlannerResults() {
+  const cat = document.getElementById('planner-category-select').value;
+  const maxPrice = Number(document.getElementById('planner-max-price').value);
+  document.getElementById('planner-price-label').textContent = `Do ${maxPrice} zł`;
+
+  const selectedStores = Array.from(document.querySelectorAll('.planner-store-cb:checked')).map(cb => cb.value);
+  const selectedPrefs = Array.from(document.querySelectorAll('.planner-pref-cb:checked')).map(cb => cb.value);
+
+  const filtered = PLANNER_PRODUCTS.filter(p => {
+    if (cat !== 'all' && p.category !== cat) return false;
+    if (p.price > maxPrice) return false;
+    if (selectedStores.length > 0 && !selectedStores.some(st => p.stores.includes(st))) return false;
+    if (selectedPrefs.length > 0 && !selectedPrefs.every(pref => p.prefs.includes(pref))) return false;
+    return true;
+  });
+
+  document.getElementById('planner-results-count').textContent = `Znaleziono produktów: ${filtered.length}`;
+  const grid = document.getElementById('planner-results-grid');
+  grid.innerHTML = '';
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="bg-white rounded-3xl border border-slate-200 p-8 text-center">
+        <div class="text-3xl mb-2">🔍</div>
+        <h3 class="text-base font-extrabold text-slate-900">Brak produktów dla tak wąskich filtrów</h3>
+        <p class="text-sm text-slate-600 mt-1">Zwiększ maksymalny budżet albo odznacz część priorytetów w ankiecie po lewej stronie.</p>
+      </div>
     `;
-    btn.addEventListener('click', () => handleQuizAnswer(idx));
-    optionsContainer.appendChild(btn);
-  });
-}
-
-function handleQuizAnswer(selectedIndex) {
-  if (quizSession.answered) return;
-  quizSession.answered = true;
-
-  const q = quizSession.questions[quizSession.currentIndex];
-  const isCorrect = selectedIndex === q.correctIndex;
-
-  if (!quizSession.catStats[q.category]) {
-    quizSession.catStats[q.category] = { ok: 0, total: 0 };
-  }
-  quizSession.catStats[q.category].total += 1;
-  if (isCorrect) {
-    quizSession.score += 1;
-    quizSession.catStats[q.category].ok += 1;
+    return;
   }
 
-  document.getElementById('quiz-live-score').textContent = `Punkty: ${quizSession.score}`;
-
-  const buttons = document.querySelectorAll('.quiz-opt-btn');
-  buttons.forEach((btn, idx) => {
-    btn.disabled = true;
-    btn.classList.remove('hover:border-indigo-400', 'hover:bg-indigo-50/40');
-    if (idx === q.correctIndex) {
-      btn.className = 'quiz-opt-btn w-full flex items-center gap-4 p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50 text-left transition-all';
-      btn.querySelector('span:first-child').className = 'w-9 h-9 rounded-xl bg-emerald-600 text-white font-extrabold text-sm flex items-center justify-center shrink-0';
-    } else if (idx === selectedIndex && !isCorrect) {
-      btn.className = 'quiz-opt-btn w-full flex items-center gap-4 p-4 rounded-2xl border-2 border-rose-500 bg-rose-50 text-left transition-all';
-      btn.querySelector('span:first-child').className = 'w-9 h-9 rounded-xl bg-rose-600 text-white font-extrabold text-sm flex items-center justify-center shrink-0';
-    } else {
-      btn.className = 'quiz-opt-btn w-full flex items-center gap-4 p-4 rounded-2xl border-2 border-slate-100 bg-slate-50/70 opacity-60 text-left';
-    }
-  });
-
-  const feedbackBox = document.getElementById('quiz-feedback-box');
-  feedbackBox.classList.remove('hidden');
-
-  if (isCorrect) {
-    feedbackBox.className = 'mt-6 rounded-2xl p-5 border-2 bg-emerald-50/70 border-emerald-300 animate-fade-in';
-    document.getElementById('quiz-feedback-icon').textContent = '✅';
-    document.getElementById('quiz-feedback-title').textContent = 'Dobrze! Nie dałeś się nabrać.';
-    document.getElementById('quiz-feedback-title').className = 'text-base font-extrabold text-emerald-900';
-  } else {
-    feedbackBox.className = 'mt-6 rounded-2xl p-5 border-2 bg-rose-50/70 border-rose-300 animate-fade-in';
-    document.getElementById('quiz-feedback-icon').textContent = '❌';
-    document.getElementById('quiz-feedback-title').textContent = 'To popularny mit! Zobacz, jak jest naprawdę:';
-    document.getElementById('quiz-feedback-title').className = 'text-base font-extrabold text-rose-900';
-  }
-
-  document.getElementById('quiz-feedback-text').textContent = q.explanation;
-  document.getElementById('quiz-feedback-source').textContent = q.source;
-  document.getElementById('quiz-next-btn').classList.remove('hidden');
-}
-
-function showQuizSummary() {
-  document.getElementById('quiz-active').classList.add('hidden');
-  document.getElementById('quiz-summary').classList.remove('hidden');
-
-  const total = quizSession.questions.length;
-  const pct = Math.round((quizSession.score / total) * 100);
-
-  let rank = '';
-  let emoji = '';
-  let msg = '';
-  let badgeCls = '';
-
-  if (pct >= 76) {
-    rank = 'Łowca Mitów (Poziom Ekspert)';
-    emoji = '🏆';
-    badgeCls = 'bg-emerald-100 text-emerald-900 border border-emerald-300';
-    msg = 'Marketingowcy mają z Tobą naprawdę ciężko! Potrafisz czytać składy, znasz różnicę między suplementem a lekiem i nie ulegasz chemofobii.';
-  } else if (pct >= 45) {
-    rank = 'Czujny Konsument';
-    emoji = '🔎';
-    badgeCls = 'bg-amber-100 text-amber-900 border border-amber-300';
-    msg = 'Masz solidne podstawy, ale kilka sprytnych haczyków nadal potrafi uśpić Twoją czujność. Pobierz Ściągawkę 30 s, aby domknąć luki!';
-  } else {
-    rank = 'Ofiara Zielonego Listka';
-    emoji = '🌿';
-    badgeCls = 'bg-rose-100 text-rose-900 border border-rose-300';
-    msg = 'Spokojnie – właśnie dlatego powstała ta aplikacja! Przejdź jeszcze raz Rentgen Etykiety i zapisz w telefonie Test 3 Pytań przy półce.';
-  }
-
-  if (appState.bestQuizPct === null || pct >= appState.bestQuizPct) {
-    appState.bestQuizPct = pct;
-    appState.bestQuizRank = rank;
-    saveState();
-    updateNavBadges();
-  }
-
-  document.getElementById('summary-emoji').textContent = emoji;
-  document.getElementById('summary-score-big').textContent = `${quizSession.score} / ${total} (${pct}%)`;
-
-  const badge = document.getElementById('summary-rank-badge');
-  badge.textContent = rank;
-  badge.className = `inline-flex items-center px-4 py-1.5 rounded-full text-sm font-extrabold mt-3 ${badgeCls}`;
-  document.getElementById('summary-message').textContent = msg;
-
-  const breakdown = document.getElementById('summary-breakdown');
-  breakdown.innerHTML = '';
-  Object.entries(quizSession.catStats).forEach(([catKey, stat]) => {
-    const card = document.createElement('div');
-    card.className = 'p-4 rounded-2xl bg-slate-50 border border-slate-200';
+  filtered.forEach(prod => {
+    const inCart = appState.shoppingList.some(item => item.id === prod.id);
+    const card = document.createElement('article');
+    card.className = 'bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-6 shadow-sm hover:border-emerald-300 transition-all animate-fade-in';
     card.innerHTML = `
-      <div class="text-xs font-bold text-slate-500">${CATEGORY_LABELS[catKey]}</div>
-      <div class="text-xl font-black text-slate-900 mt-1">${stat.ok} / ${stat.total}</div>
+      <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
+        <div>
+          <div class="flex flex-wrap items-center gap-2 mb-1.5">
+            <span class="text-xs font-extrabold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-800">${prod.categoryLabel}</span>
+            ${prod.stores.map(s => `<span class="text-[11px] font-bold px-2 py-0.5 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200">🏪 ${s}</span>`).join('')}
+          </div>
+          <h3 class="text-lg font-extrabold text-slate-900">${prod.name}</h3>
+        </div>
+        <div class="flex sm:flex-col items-center sm:items-end justify-between gap-2 shrink-0">
+          <div class="text-xl font-black text-slate-900">~${prod.price.toFixed(2).replace('.', ',')} zł</div>
+          <button type="button" data-cart-toggle="${prod.id}" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-colors ${
+            inCart
+              ? 'bg-emerald-100 text-emerald-900 border border-emerald-300 hover:bg-rose-50 hover:text-rose-700 hover:border-rose-200'
+              : 'bg-slate-900 text-white hover:bg-emerald-600'
+          }">
+            ${inCart ? '✓ Na liście (Usuń)' : '+ Dodaj do listy'}
+          </button>
+        </div>
+      </div>
+
+      <!-- Pełny skład -->
+      <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 mb-3.5 leading-relaxed">
+        <span class="font-extrabold text-slate-900 uppercase tracking-wide">Pełny skład: </span>${prod.ingredients}
+      </div>
+
+      <!-- Zbalansowana ocena: Plusy / Na co zwrócić uwagę -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3.5">
+        <div class="p-3.5 rounded-2xl bg-emerald-50/60 border border-emerald-200/80">
+          <div class="text-xs font-extrabold uppercase text-emerald-800 mb-1">✓ Co jest dobre (Plusy)</div>
+          <ul class="text-xs text-slate-700 space-y-1 list-disc list-inside leading-relaxed">
+            ${prod.pros.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </div>
+        <div class="p-3.5 rounded-2xl bg-amber-50/60 border border-amber-200/80">
+          <div class="text-xs font-extrabold uppercase text-amber-900 mb-1">⚖️ Na co zwrócić uwagę</div>
+          <ul class="text-xs text-slate-700 space-y-1 list-disc list-inside leading-relaxed">
+            ${prod.cons.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Relacja ceny i źródło -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-3 border-t border-slate-100 text-xs">
+        <div class="text-slate-700"><strong class="text-slate-900">💰 Za co płacisz:</strong> ${prod.priceVerdict}</div>
+        <a href="${prod.sourceUrl}" target="_blank" rel="noopener noreferrer" class="font-bold text-emerald-700 hover:underline shrink-0">
+          📖 ${prod.sourceLabel} ↗
+        </a>
+      </div>
     `;
-    breakdown.appendChild(card);
+
+    card.querySelector('[data-cart-toggle]').addEventListener('click', () => toggleShoppingItem(prod));
+    grid.appendChild(card);
+  });
+}
+
+function toggleShoppingItem(prod) {
+  const idx = appState.shoppingList.findIndex(item => item.id === prod.id);
+  if (idx >= 0) {
+    appState.shoppingList.splice(idx, 1);
+    showToast(`Usunięto z listy: ${prod.name}`);
+  } else {
+    appState.shoppingList.push({
+      id: prod.id,
+      name: prod.name,
+      price: prod.price,
+      stores: prod.stores.join(', '),
+      checked: false
+    });
+    showToast(`Dodano do listy zakupów!`);
+  }
+  saveState();
+  updateNavBadges();
+  renderShoppingCart();
+  renderPlannerResults();
+}
+
+function renderShoppingCart() {
+  const listEl = document.getElementById('planner-cart-list');
+  const summaryEl = document.getElementById('planner-cart-summary');
+  const clearBtn = document.getElementById('planner-clear-cart-btn');
+
+  const items = appState.shoppingList || [];
+  const total = items.reduce((sum, item) => sum + item.price, 0);
+  summaryEl.textContent = `${items.length} prod. · ~${total.toFixed(2).replace('.', ',')} zł`;
+  clearBtn.classList.toggle('hidden', items.length === 0);
+
+  if (items.length === 0) {
+    listEl.innerHTML = 'Dodaj wybrane produkty z prawej strony, aby zaplanować świadome zakupy.';
+    return;
+  }
+
+  listEl.innerHTML = '';
+  items.forEach(item => {
+    const row = document.createElement('div');
+    row.className = 'flex items-start justify-between gap-2 p-2.5 rounded-xl bg-slate-50 border border-slate-200';
+    row.innerHTML = `
+      <label class="flex items-start gap-2 cursor-pointer flex-1">
+        <input type="checkbox" ${item.checked ? 'checked' : ''} class="mt-0.5 accent-emerald-600" />
+        <div class="${item.checked ? 'line-through opacity-50' : ''}">
+          <div class="font-bold text-slate-800">${item.name}</div>
+          <div class="text-[11px] text-slate-500">${item.stores} · ~${item.price.toFixed(2).replace('.', ',')} zł</div>
+        </div>
+      </label>
+      <button type="button" class="text-slate-400 hover:text-rose-600 font-bold px-1" title="Usuń">✕</button>
+    `;
+
+    row.querySelector('input').addEventListener('change', (e) => {
+      item.checked = e.target.checked;
+      saveState();
+      renderShoppingCart();
+    });
+    row.querySelector('button').addEventListener('click', () => {
+      appState.shoppingList = appState.shoppingList.filter(x => x.id !== item.id);
+      saveState();
+      updateNavBadges();
+      renderShoppingCart();
+      renderPlannerResults();
+    });
+    listEl.appendChild(row);
   });
 }
 
@@ -1254,6 +1998,111 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => switchTab(btn.dataset.gotoTab));
   });
 
+  // Sklepowy pasek kategorii (przyciski główne i rozwijane podkategorie)
+  document.querySelectorAll('.quick-cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.quickCat;
+      appState.xrayCategoryFilter = cat;
+      const firstMatch = PRODUCTS.findIndex(p => p.mainCategory === cat);
+      if (firstMatch >= 0) appState.currentProductIndex = firstMatch;
+      renderXrayView();
+      switchTab('xray');
+    });
+  });
+
+  document.querySelectorAll('[data-cat-action]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const action = btn.dataset.catAction;
+      if (action === 'xray') {
+        const idx = PRODUCTS.findIndex(p => p.id === btn.dataset.targetId);
+        if (idx >= 0) {
+          appState.xrayCategoryFilter = 'all';
+          appState.currentProductIndex = idx;
+          appState.activeLayerKey = 'chemia';
+          renderXrayView();
+          switchTab('xray');
+        }
+      } else if (action === 'scanner-drug') {
+        appState.scannerMode = 'drugs';
+        appState.activeDrugScanId = btn.dataset.targetId;
+        renderScannerView();
+        switchTab('scanner');
+      } else if (action === 'scanner-cert') {
+        appState.scannerMode = 'certs';
+        appState.activeCertScanId = btn.dataset.targetId;
+        renderScannerView();
+        switchTab('scanner');
+      } else if (action === 'planner') {
+        document.getElementById('planner-category-select').value = btn.dataset.targetCat || 'all';
+        renderPlannerResults();
+        switchTab('planner');
+      }
+    });
+  });
+
+  // Filtry kategorii w Rentgenie
+  document.querySelectorAll('.xray-cat-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      appState.xrayCategoryFilter = pill.dataset.xrayCat;
+      if (appState.xrayCategoryFilter !== 'all') {
+        const matchIdx = PRODUCTS.findIndex(p => p.mainCategory === appState.xrayCategoryFilter);
+        if (matchIdx >= 0) appState.currentProductIndex = matchIdx;
+      }
+      renderXrayView();
+    });
+  });
+
+  // Zdarzenia Skanera / Aparatu
+  document.querySelectorAll('.scanner-mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      appState.scannerMode = btn.dataset.scannerMode;
+      renderScannerView();
+    });
+  });
+
+  document.getElementById('btn-toggle-camera').addEventListener('click', () => {
+    if (activeCameraStream) stopCamera();
+    else startCamera();
+  });
+
+  document.getElementById('scanner-file-input').addEventListener('change', (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    stopCamera();
+    const imgEl = document.getElementById('scanner-uploaded-img');
+    const placeholder = document.getElementById('scanner-placeholder');
+    const reader = new FileReader();
+    reader.onload = () => {
+      imgEl.src = reader.result;
+      imgEl.classList.remove('hidden');
+      placeholder.classList.add('hidden');
+      document.getElementById('scanner-status-tag').textContent = `Wgrano zdjęcie: ${file.name} (wybierz dopasowanie poniżej)`;
+      showToast('Zdjęcie załadowane w wizjerze skanera!');
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // Zdarzenia Planera Zakupów
+  document.getElementById('planner-category-select').addEventListener('change', renderPlannerResults);
+  document.getElementById('planner-max-price').addEventListener('input', renderPlannerResults);
+  document.querySelectorAll('.planner-store-cb, .planner-pref-cb').forEach(cb => {
+    cb.addEventListener('change', renderPlannerResults);
+  });
+  document.getElementById('planner-reset-filters-btn').addEventListener('click', () => {
+    document.getElementById('planner-category-select').value = 'all';
+    document.getElementById('planner-max-price').value = '80';
+    document.querySelectorAll('.planner-store-cb, .planner-pref-cb').forEach(cb => { cb.checked = false; });
+    renderPlannerResults();
+  });
+  document.getElementById('planner-clear-cart-btn').addEventListener('click', () => {
+    appState.shoppingList = [];
+    saveState();
+    updateNavBadges();
+    renderShoppingCart();
+    renderPlannerResults();
+    showToast('Lista zakupów została wyczyszczona.');
+  });
+
   // Zdarzenia Rentgena
   document.getElementById('btn-vote-kupuje').addEventListener('click', () => handleVote('kupuje'));
   document.getElementById('btn-vote-sciema').addEventListener('click', () => handleVote('sciema'));
@@ -1341,15 +2190,22 @@ document.addEventListener('DOMContentLoaded', () => {
     appState.bestQuizPct = null;
     appState.bestQuizRank = null;
     appState.currentProductIndex = 0;
+    appState.xrayCategoryFilter = 'all';
     appState.activeLayerKey = 'chemia';
+    appState.shoppingList = [];
     saveState();
     closeResetModal();
     renderXrayView();
-    showToast('Postęp został zresetowany.');
+    renderShoppingCart();
+    renderPlannerResults();
+    showToast('Postęp oraz lista zakupów zostały zresetowane.');
   });
 
   // Pierwsze renderowanie widoków
   renderXrayView();
+  renderScannerView();
+  renderShoppingCart();
+  renderPlannerResults();
   renderSavedFeedbacks();
   switchTab('xray');
 });

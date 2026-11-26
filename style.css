@@ -104,6 +104,67 @@ transform: translateY(0);
 animation: fadeSlideUp 0.28s ease-out forwards;
 }
 
+/* =========================================================================
+SKLEPOWY PASEK KATEGORII (Rozwijane podkategorie po najechaniu / focusie)
+========================================================================= */
+.cat-dropdown-group {
+position: relative;
+}
+
+.cat-dropdown-panel {
+opacity: 0;
+visibility: hidden;
+transform: translateY(6px);
+transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+pointer-events: none;
+}
+
+.cat-dropdown-group:hover .cat-dropdown-panel,
+.cat-dropdown-group:focus-within .cat-dropdown-panel {
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
+pointer-events: auto;
+}
+
+/* =========================================================================
+SKANER / APARAT – Celownik i animacja wiązki skanującej
+========================================================================= */
+@keyframes scanner-laser {
+0% {
+top: 10%;
+opacity: 0.9;
+}
+50% {
+top: 88%;
+opacity: 1;
+}
+100% {
+top: 10%;
+opacity: 0.9;
+}
+}
+
+.scanner-laser-line {
+position: absolute;
+left: 8%;
+right: 8%;
+height: 3px;
+border-radius: 9999px;
+background: linear-gradient(90deg, transparent, #10b981, #38bdf8, #10b981, transparent);
+box-shadow: 0 0 14px 3px rgba(16, 185, 129, 0.65);
+animation: scanner-laser 2.2s ease-in-out infinite;
+pointer-events: none;
+}
+
+.scanner-corner {
+position: absolute;
+width: 24px;
+height: 24px;
+border-color: #34d399;
+pointer-events: none;
+}
+
 /* Estetyczny pasek przewijania na komputerze/laptopie */
 ::-webkit-scrollbar {
 width: 8px;

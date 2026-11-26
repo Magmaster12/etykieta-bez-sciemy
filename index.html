@@ -67,28 +67,37 @@
 
         <!-- Główne zakładki nawigacyjne -->
         <nav class="flex items-center gap-1.5 bg-slate-100/90 p-1.5 rounded-2xl border border-slate-200/70 overflow-x-auto max-w-full" aria-label="Główna nawigacja">
-          <button data-tab="xray" type="button" class="nav-tab flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap">
+          <button data-tab="xray" type="button" class="nav-tab flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap">
             <span>🔬</span>
-            <span>Rentgen Etykiety</span>
-            <span id="nav-xray-badge" class="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">0/5</span>
+            <span>Rentgen</span>
+            <span id="nav-xray-badge" class="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">0/6</span>
           </button>
-          <button data-tab="quiz" type="button" class="nav-tab flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap">
+          <button data-tab="scanner" type="button" class="nav-tab flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap">
+            <span>📷</span>
+            <span>Skaner</span>
+          </button>
+          <button data-tab="planner" type="button" class="nav-tab flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap">
+            <span>🛒</span>
+            <span>Planer Zakupów</span>
+            <span id="nav-cart-badge" class="hidden text-xs px-2 py-0.5 rounded-full bg-emerald-600 text-white font-bold">0</span>
+          </button>
+          <button data-tab="quiz" type="button" class="nav-tab flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap">
             <span>🧠</span>
             <span>Sprawdź się!</span>
             <span id="nav-quiz-badge" class="hidden text-xs px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-800 font-bold">0%</span>
           </button>
-          <button data-tab="cheatsheet" type="button" class="nav-tab flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap">
+          <button data-tab="cheatsheet" type="button" class="nav-tab flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap">
             <span>📋</span>
-            <span>Ściągawka 30 s</span>
+            <span>Ściągawka</span>
           </button>
-          <button data-tab="sources" type="button" class="nav-tab flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap">
+          <button data-tab="sources" type="button" class="nav-tab flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap">
             <span>📚</span>
-            <span>Źródła i Zespół</span>
+            <span>Źródła</span>
           </button>
         </nav>
 
         <!-- Przycisk resetu postępu -->
-        <div class="hidden md:flex items-center gap-3">
+        <div class="hidden xl:flex items-center gap-3">
           <button id="open-reset-modal-btn" type="button" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-rose-700 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 transition-colors">
             ↺ Resetuj postęp
           </button>
@@ -96,10 +105,138 @@
 
       </div>
     </div>
+
+    <!-- ===================================================================
+         SKLEPOWY PASEK KATEGORII (wyraźne rozdzielenie: Leki vs Suplementy vs Kosmetyki vs Żywność)
+         =================================================================== -->
+    <div class="bg-slate-900 text-white border-t border-slate-800 no-print">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-wrap items-center justify-between gap-2 py-2 text-xs sm:text-sm">
+          <div class="flex flex-wrap items-center gap-1 sm:gap-2">
+            <span class="hidden lg:inline-block text-[11px] font-bold uppercase tracking-wider text-slate-400 mr-2">Kategorie prawne:</span>
+
+            <!-- Kategoria 1: LEKI -->
+            <div class="cat-dropdown-group">
+              <button type="button" data-quick-cat="leki" class="quick-cat-btn flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-bold text-rose-200 hover:bg-slate-800 hover:text-white transition-colors">
+                <span>💊</span>
+                <span>Leki (Produkty lecznicze)</span>
+                <span class="text-[10px] opacity-70">▾</span>
+              </button>
+              <div class="cat-dropdown-panel absolute left-0 top-full pt-2 w-72 z-50">
+                <div class="bg-white text-slate-900 rounded-2xl shadow-xl border border-slate-200 p-3">
+                  <div class="px-2.5 py-1.5 mb-1.5 rounded-xl bg-rose-50 border border-rose-100">
+                    <div class="text-[11px] font-extrabold uppercase text-rose-800">Status prawny: Lek (URPL / GIF)</div>
+                    <div class="text-[11px] text-rose-700">Udowodnione działanie lecznicze i ścisły nadzór farmaceutyczny.</div>
+                  </div>
+                  <button type="button" data-cat-action="scanner-drug" data-target-id="magnelek-b6" class="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold hover:bg-slate-100 flex items-center justify-between">
+                    <span>Witaminy i minerały w statusie leku</span><span class="text-slate-400">📷</span>
+                  </button>
+                  <button type="button" data-cat-action="scanner-drug" data-target-id="ibuprofen-400" class="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold hover:bg-slate-100 flex items-center justify-between">
+                    <span>Przeciwbólowe i przeciwzapalne (OTC)</span><span class="text-slate-400">📷</span>
+                  </button>
+                  <button type="button" data-cat-action="scanner-drug" data-target-id="melatonina-lek" class="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold hover:bg-slate-100 flex items-center justify-between">
+                    <span>Na sen i rytm dobowy (status leku)</span><span class="text-slate-400">📷</span>
+                  </button>
+                  <button type="button" data-cat-action="planner" data-target-cat="leki" class="w-full text-left px-3 py-2 mt-1 border-t border-slate-100 rounded-xl text-xs font-bold text-emerald-700 hover:bg-emerald-50">
+                    Zobacz wszystkie leki w Planerze →
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kategoria 2: SUPLEMENTY DIETY -->
+            <div class="cat-dropdown-group">
+              <button type="button" data-quick-cat="suplementy" class="quick-cat-btn flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-bold text-amber-200 hover:bg-slate-800 hover:text-white transition-colors">
+                <span>🧴</span>
+                <span>Suplementy diety</span>
+                <span class="text-[10px] opacity-70">▾</span>
+              </button>
+              <div class="cat-dropdown-panel absolute left-0 top-full pt-2 w-72 z-50">
+                <div class="bg-white text-slate-900 rounded-2xl shadow-xl border border-slate-200 p-3">
+                  <div class="px-2.5 py-1.5 mb-1.5 rounded-xl bg-amber-50 border border-amber-100">
+                    <div class="text-[11px] font-extrabold uppercase text-amber-900">Status prawny: Żywność (GIS)</div>
+                    <div class="text-[11px] text-amber-800">Uzupełniają normalną dietę – prawnie nie służą do leczenia chorób.</div>
+                  </div>
+                  <button type="button" data-cat-action="xray" data-target-id="suplement-neurocalm" class="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold hover:bg-slate-100 flex items-center justify-between">
+                    <span>Na stres i wyciszenie (Rentgen)</span><span class="text-slate-400">🔬</span>
+                  </button>
+                  <button type="button" data-cat-action="planner" data-target-cat="suplementy" class="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold hover:bg-slate-100 flex items-center justify-between">
+                    <span>Porównaj suplementy w Planerze</span><span class="text-slate-400">🛒</span>
+                  </button>
+                  <button type="button" data-cat-action="scanner-drug" data-target-id="neurocalm-scan" class="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold hover:bg-slate-100 flex items-center justify-between">
+                    <span>Sprawdź różnicę: Lek vs Suplement</span><span class="text-slate-400">📷</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kategoria 3: KOSMETYKI -->
+            <div class="cat-dropdown-group">
+              <button type="button" data-quick-cat="kosmetyki" class="quick-cat-btn flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-bold text-sky-200 hover:bg-slate-800 hover:text-white transition-colors">
+                <span>✨</span>
+                <span>Kosmetyki</span>
+                <span class="text-[10px] opacity-70">▾</span>
+              </button>
+              <div class="cat-dropdown-panel absolute left-0 top-full pt-2 w-72 z-50">
+                <div class="bg-white text-slate-900 rounded-2xl shadow-xl border border-slate-200 p-3">
+                  <div class="px-2.5 py-1.5 mb-1.5 rounded-xl bg-sky-50 border border-sky-100">
+                    <div class="text-[11px] font-extrabold uppercase text-sky-900">Rozporządzenie (WE) 1223/2009</div>
+                    <div class="text-[11px] text-sky-800">Skład INCI oraz zasady uzasadniania oświadczeń (Rozp. 655/2013).</div>
+                  </div>
+                  <button type="button" data-cat-action="planner" data-target-cat="kosmetyki" class="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold hover:bg-slate-100 flex items-center justify-between">
+                    <span>Kremy do twarzy – dobierz w Planerze</span><span class="text-slate-400">🛒</span>
+                  </button>
+                  <button type="button" data-cat-action="xray" data-target-id="krem-purebio" class="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold hover:bg-slate-100 flex items-center justify-between">
+                    <span>Analiza etykiety kremu (Rentgen)</span><span class="text-slate-400">🔬</span>
+                  </button>
+                  <button type="button" data-cat-action="scanner-cert" data-target-id="cert-cosmos" class="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold hover:bg-slate-100 flex items-center justify-between">
+                    <span>Certyfikaty kosmetyczne (COSMOS)</span><span class="text-slate-400">🏅</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kategoria 4: ŻYWNOŚĆ -->
+            <div class="cat-dropdown-group">
+              <button type="button" data-quick-cat="zywnosc" class="quick-cat-btn flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-bold text-emerald-200 hover:bg-slate-800 hover:text-white transition-colors">
+                <span>🥗</span>
+                <span>Żywność</span>
+                <span class="text-[10px] opacity-70">▾</span>
+              </button>
+              <div class="cat-dropdown-panel absolute left-0 top-full pt-2 w-72 z-50">
+                <div class="bg-white text-slate-900 rounded-2xl shadow-xl border border-slate-200 p-3">
+                  <div class="px-2.5 py-1.5 mb-1.5 rounded-xl bg-emerald-50 border border-emerald-100">
+                    <div class="text-[11px] font-extrabold uppercase text-emerald-900">Rozporządzenie (UE) 1169/2011</div>
+                    <div class="text-[11px] text-emerald-800">Tabela na 100 g, kolejność składników i wykaz dodatków E (EFSA).</div>
+                  </div>
+                  <button type="button" data-cat-action="xray" data-target-id="baton-fitzero" class="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold hover:bg-slate-100 flex items-center justify-between">
+                    <span>Przekąski i batony (porcja vs 100 g)</span><span class="text-slate-400">🔬</span>
+                  </button>
+                  <button type="button" data-cat-action="xray" data-target-id="woda-alkaline" class="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold hover:bg-slate-100 flex items-center justify-between">
+                    <span>Napoje funkcjonalne i eko-hasła</span><span class="text-slate-400">🔬</span>
+                  </button>
+                  <button type="button" data-cat-action="xray" data-target-id="mus-owocowy" class="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold hover:bg-slate-100 flex items-center justify-between">
+                    <span>Musy z symbolami E i Euroliściem</span><span class="text-slate-400">🔬</span>
+                  </button>
+                  <button type="button" data-cat-action="planner" data-target-cat="zywnosc" class="w-full text-left px-3 py-2 mt-1 border-t border-slate-100 rounded-xl text-xs font-bold text-emerald-700 hover:bg-emerald-50">
+                    Porównaj żywność w Planerze →
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hidden xl:flex items-center gap-1.5 text-[11px] text-slate-400">
+            <span>⚖️</span>
+            <span>Obiektywne zestawienia Plusów i Minusów · Edukacja konsumencka</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </header>
 
   <!-- =====================================================================
-       GŁÓWNA ZAWARTOŚĆ APLIKACJI (4 WIDOKI SPA)
+       GŁÓWNA ZAWARTOŚĆ APLIKACJI (6 WIDOKÓW SPA)
        ===================================================================== -->
   <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
@@ -108,24 +245,24 @@
          =================================================================== -->
     <section id="view-xray" class="tab-view animate-fade-in">
 
-      <!-- Górny baner kontekstowy i pasek wyboru 5 produktów -->
+      <!-- Górny baner kontekstowy i pasek wyboru produktów -->
       <div class="bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-6 shadow-sm mb-6">
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-5">
           <div>
             <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full mb-2">
-              Moduł 1 · Interaktywny symulator
+              Moduł 1 · Obiektywny Rentgen Etykiety
             </span>
             <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
-              Rentgen Etykiety: Kupujesz czy wyczuwasz ściemę?
+              Rentgen Etykiety: Rzetelny wybór czy element do weryfikacji?
             </h1>
             <p class="text-sm sm:text-base text-slate-600 mt-1">
-              Oceń 5 produktów inspirowanych rynkiem. Najpierw podejmij decyzję, a potem prześwietl opakowanie przez 4 filtry: <strong class="text-sky-700">Chemię</strong>, <strong class="text-indigo-700">Prawo</strong>, <strong class="text-amber-700">Jakość</strong> i <strong class="text-rose-700">Grafikę</strong>.
+              Przeanalizuj 6 przykładowych produktów z 4 kategorii (w tym <strong>Lek OTC vs Suplement diety</strong>). Zamiast skrajnych ocen, poznasz wyważone <strong>plusy i kwestie wymagające uwagi</strong> pod kątem <strong class="text-sky-700">Chemii</strong>, <strong class="text-indigo-700">Prawa</strong>, <strong class="text-amber-700">Jakości</strong> i <strong class="text-rose-700">Grafiki</strong>.
             </p>
           </div>
           <div class="flex items-center gap-3 bg-slate-50 px-4 py-3 rounded-2xl border border-slate-200 shrink-0">
             <div class="text-right">
               <div class="text-xs font-semibold text-slate-500">Prześwietlone produkty</div>
-              <div id="xray-progress-text" class="text-lg font-extrabold text-slate-900">0 z 5</div>
+              <div id="xray-progress-text" class="text-lg font-extrabold text-slate-900">0 z 6</div>
             </div>
             <div class="w-24 h-2.5 bg-slate-200 rounded-full overflow-hidden">
               <div id="xray-progress-bar" class="h-full bg-emerald-500 rounded-full transition-all duration-500" style="width: 0%"></div>
@@ -133,8 +270,17 @@
           </div>
         </div>
 
-        <!-- Pasek wyboru 5 produktów (wypełniany z app.js) -->
-        <div id="product-selector-strip" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5"></div>
+        <!-- Pasek filtrów kategorii w Rentgenie -->
+        <div id="xray-category-filter" class="flex flex-wrap items-center gap-2 mb-4 pb-3 border-b border-slate-100">
+          <button type="button" data-xray-cat="all" class="xray-cat-pill px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-900 text-white">Wszystkie (6)</button>
+          <button type="button" data-xray-cat="leki" class="xray-cat-pill px-3 py-1.5 rounded-xl text-xs font-semibold bg-rose-50 text-rose-800 border border-rose-200 hover:bg-rose-100">💊 Leki</button>
+          <button type="button" data-xray-cat="suplementy" class="xray-cat-pill px-3 py-1.5 rounded-xl text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100">🧴 Suplementy</button>
+          <button type="button" data-xray-cat="kosmetyki" class="xray-cat-pill px-3 py-1.5 rounded-xl text-xs font-semibold bg-sky-50 text-sky-800 border border-sky-200 hover:bg-sky-100">✨ Kosmetyki</button>
+          <button type="button" data-xray-cat="zywnosc" class="xray-cat-pill px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100">🥗 Żywność</button>
+        </div>
+
+        <!-- Pasek wyboru produktów (wypełniany z app.js) -->
+        <div id="product-selector-strip" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2.5"></div>
       </div>
 
       <!-- Przestrzeń robocza: Lewa kolumna (Opakowanie + Pinezki) | Prawa kolumna (Decyzja + Rentgen) -->
@@ -177,40 +323,52 @@
               <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
                 <span>Krok 1 z 2</span>
                 <span>•</span>
-                <span>Twoja pierwsza reakcja</span>
+                <span>Twoja wstępna ocena etykiety</span>
               </div>
               <h3 class="text-xl font-extrabold text-slate-900 mb-2">
-                Wrzucasz ten produkt do koszyka czy odstawiasz na półkę?
+                Jak oceniasz komunikaty i oznaczenia na tym opakowaniu?
               </h3>
               <p id="product-teaser" class="text-sm text-slate-600 mb-6 leading-relaxed"></p>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <button id="btn-vote-kupuje" type="button" class="group flex items-center justify-center gap-3 p-4 rounded-2xl border-2 border-emerald-200 bg-emerald-50/70 hover:bg-emerald-600 hover:border-emerald-600 text-emerald-900 hover:text-white font-bold text-base transition-all shadow-sm hover:shadow-md">
-                  <span class="text-2xl group-hover:scale-110 transition-transform">🛒</span>
+                  <span class="text-2xl group-hover:scale-110 transition-transform">✅</span>
                   <div class="text-left">
-                    <div>Kupuję!</div>
-                    <div class="text-xs font-medium opacity-80">Wygląda rzetelnie i bezpiecznie</div>
+                    <div>Oznaczenia rzetelne</div>
+                    <div class="text-xs font-medium opacity-80">Przejrzysty skład i wiarygodny status</div>
                   </div>
                 </button>
 
-                <button id="btn-vote-sciema" type="button" class="group flex items-center justify-center gap-3 p-4 rounded-2xl border-2 border-rose-200 bg-rose-50/70 hover:bg-rose-600 hover:border-rose-600 text-rose-900 hover:text-white font-bold text-base transition-all shadow-sm hover:shadow-md">
-                  <span class="text-2xl group-hover:scale-110 transition-transform">🚨</span>
+                <button id="btn-vote-sciema" type="button" class="group flex items-center justify-center gap-3 p-4 rounded-2xl border-2 border-amber-200 bg-amber-50/70 hover:bg-amber-600 hover:border-amber-600 text-amber-950 hover:text-white font-bold text-base transition-all shadow-sm hover:shadow-md">
+                  <span class="text-2xl group-hover:scale-110 transition-transform">🔍</span>
                   <div class="text-left">
-                    <div>Ściema!</div>
-                    <div class="text-xs font-medium opacity-80">Wyczuwam marketingową pułapkę</div>
+                    <div>Wymaga weryfikacji</div>
+                    <div class="text-xs font-medium opacity-80">Widzę hasła lub zabiegi marketingowe</div>
                   </div>
                 </button>
               </div>
             </div>
 
-            <!-- Stan po podjęciu decyzji (Werdykt) -->
+            <!-- Stan po podjęciu decyzji (Zbalansowana analiza Plusy i Minusy) -->
             <div id="decision-result" class="hidden">
               <div class="flex items-start gap-3.5">
                 <div id="verdict-icon-box" class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shrink-0"></div>
-                <div>
+                <div class="flex-1">
                   <div id="verdict-badge" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-extrabold uppercase tracking-wide mb-1"></div>
                   <h3 id="verdict-headline" class="text-lg font-extrabold text-slate-900"></h3>
                   <p id="verdict-summary" class="text-sm text-slate-600 mt-1 leading-relaxed"></p>
+                </div>
+              </div>
+
+              <!-- Wyważona karta Plusy / Na co zwrócić uwagę (bezpieczna prawnie) -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4 pt-4 border-t border-slate-100">
+                <div class="p-3.5 rounded-2xl bg-emerald-50/60 border border-emerald-200/80">
+                  <div class="text-xs font-extrabold uppercase tracking-wider text-emerald-800 mb-1.5">✓ Plusy / Obiektywne atuty</div>
+                  <ul id="verdict-pros-list" class="text-xs text-slate-700 space-y-1 list-disc list-inside leading-relaxed"></ul>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-amber-50/60 border border-amber-200/80">
+                  <div class="text-xs font-extrabold uppercase tracking-wider text-amber-900 mb-1.5">⚖️ Na co zwrócić uwagę</div>
+                  <ul id="verdict-cons-list" class="text-xs text-slate-700 space-y-1 list-disc list-inside leading-relaxed"></ul>
                 </div>
               </div>
             </div>
@@ -224,9 +382,9 @@
               <div class="w-14 h-14 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center text-2xl mx-auto mb-3 border border-slate-200">
                 🔒
               </div>
-              <h4 class="text-base font-bold text-slate-800">Rentgen 4 warstw czeka na Twoją decyzję</h4>
+              <h4 class="text-base font-bold text-slate-800">Rentgen 4 warstw czeka na Twoją wstępną ocenę</h4>
               <p class="text-sm text-slate-500 mt-1 max-w-md mx-auto">
-                Wybierz powyżej <strong>„Kupuję”</strong> albo <strong>„Ściema”</strong>, aby uruchomić interaktywne pinezki i zobaczyć analizę chemiczną, prawną, jakościową i graficzną.
+                Wybierz powyżej <strong>„Oznaczenia rzetelne”</strong> albo <strong>„Wymaga weryfikacji”</strong>, aby uruchomić interaktywne pinezki i zobaczyć obiektywną analizę chemiczną, prawną, jakościową i graficzną.
               </p>
             </div>
 
@@ -275,6 +433,226 @@
               </div>
             </div>
 
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         NOWY WIDOK: SKANER / APARAT (Leki – ulotki + Rozpoznawanie certyfikatów)
+         =================================================================== -->
+    <section id="view-scanner" class="tab-view hidden animate-fade-in">
+      <div class="bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-6 shadow-sm mb-6">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-50 border border-teal-200 px-3 py-1 rounded-full mb-2">
+              Nowy moduł · Skaner i Rozpoznawanie Oznaczeń
+            </span>
+            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+              Skaner Leków (ChPL) oraz Znaków i Certyfikatów
+            </h1>
+            <p class="text-sm sm:text-base text-slate-600 mt-1">
+              Uruchom kamerę lub skorzystaj z szybkiego trybu symulacji, aby sprawdzić <strong>temperaturę przechowywania, dawkowanie i przeciwwskazania leku</strong> albo zweryfikować znak jakości (np. <strong>Teraz Polska</strong>, <strong>Euroliść</strong>).
+            </p>
+          </div>
+          <!-- Przełącznik trybu Skanera -->
+          <div class="flex items-center gap-1.5 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 shrink-0">
+            <button type="button" data-scanner-mode="drugs" class="scanner-mode-btn px-4 py-2 rounded-xl text-sm font-bold bg-white text-slate-900 shadow-sm">
+              💊 Skaner Leków
+            </button>
+            <button type="button" data-scanner-mode="certs" class="scanner-mode-btn px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900">
+              🏅 Rozpoznaj Certyfikat
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <!-- LEWA KOLUMNA: Podgląd aparatu + lista próbek do zeskanowania -->
+        <div class="lg:col-span-5 bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-6 shadow-sm space-y-5">
+          <div class="flex items-center justify-between gap-2">
+            <h2 class="text-base font-extrabold text-slate-900">Podgląd aparatu / wizjer skanera</h2>
+            <div class="flex items-center gap-2">
+              <button id="btn-toggle-camera" type="button" class="px-3 py-1.5 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 transition-colors">
+                📷 Włącz aparat
+              </button>
+              <label for="scanner-file-input" class="cursor-pointer px-3 py-1.5 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors">
+                🖼️ Wgraj zdjęcie
+              </label>
+              <input id="scanner-file-input" type="file" accept="image/*" capture="environment" class="hidden" />
+            </div>
+          </div>
+
+          <!-- Wizjer aparatu -->
+          <div id="scanner-viewport" class="relative w-full aspect-[4/3] rounded-2xl bg-slate-950 overflow-hidden flex items-center justify-center border-2 border-slate-800 shadow-inner">
+            <video id="camera-video" class="hidden w-full h-full object-cover" autoplay playsinline muted></video>
+            <img id="scanner-uploaded-img" class="hidden w-full h-full object-contain bg-slate-900" alt="Wgrane zdjęcie etykiety" />
+
+            <!-- Domyślny widok symulatora skanera -->
+            <div id="scanner-placeholder" class="text-center px-6">
+              <div class="text-4xl mb-2">📱</div>
+              <div class="text-sm font-bold text-white">Tryb symulacji skanera (gotowy pod laptopa)</div>
+              <p class="text-xs text-slate-400 mt-1">
+                Kliknij jedną z próbek poniżej, wgraj zdjęcie opakowania albo uruchom kamerę urządzenia, aby przetestować skanowanie na żywo.
+              </p>
+            </div>
+
+            <!-- Celownik i wiązka skanująca -->
+            <div class="scanner-corner top-4 left-4 border-t-4 border-l-4 rounded-tl-lg"></div>
+            <div class="scanner-corner top-4 right-4 border-t-4 border-r-4 rounded-tr-lg"></div>
+            <div class="scanner-corner bottom-4 left-4 border-b-4 border-l-4 rounded-bl-lg"></div>
+            <div class="scanner-corner bottom-4 right-4 border-b-4 border-r-4 rounded-br-lg"></div>
+            <div id="scanner-laser" class="scanner-laser-line"></div>
+
+            <div id="scanner-status-tag" class="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-slate-900/85 border border-emerald-500/40 text-[11px] font-bold text-emerald-300 whitespace-nowrap">
+              Gotowy do rozpoznawania kodów i znaków
+            </div>
+          </div>
+
+          <!-- Próbki do błyskawicznego zeskanowania (1 klik) -->
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <span id="scanner-samples-label" class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Wybierz próbkę do zeskanowania:</span>
+              <span class="text-[11px] text-slate-400">Symulacja 1-klik</span>
+            </div>
+            <div id="scanner-samples-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <!-- Wypełniane dynamicznie przez app.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- PRAWA KOLUMNA: Wynik skanowania (Karta ulotki leku lub Karta certyfikatu) -->
+        <div class="lg:col-span-7 bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm">
+          <div id="scanner-result-container">
+            <!-- Wypełniane dynamicznie przez app.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         NOWY WIDOK: PLANER ZAKUPÓW I WYSZUKIWARKA (Sklepy codzienne + Ankieta)
+         =================================================================== -->
+    <section id="view-planner" class="tab-view hidden animate-fade-in">
+      <div class="bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-6 shadow-sm mb-6">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full mb-2">
+              Nowy moduł · Świadome planowanie zakupów
+            </span>
+            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+              Planer Zakupów: Dobierz produkt w swoich codziennych sklepach
+            </h1>
+            <p class="text-sm sm:text-base text-slate-600 mt-1">
+              Zaznacz kategorię, sklepy w których robisz zakupy oraz co jest dla Ciebie ważne. Zobaczysz pełne składy, <strong>neutralne zestawienie plusów i kwestii do uwagi</strong> (w tym za co ewentualnie dopłacasz) oraz źródła wiedzy.
+            </p>
+          </div>
+          <div class="bg-emerald-50 border border-emerald-200 rounded-2xl px-4 py-3 text-right shrink-0">
+            <div class="text-xs font-bold text-emerald-800">Twoja lista zakupów</div>
+            <div id="planner-cart-summary" class="text-lg font-black text-emerald-950">0 produktów · 0,00 zł</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <!-- LEWA KOLUMNA: Ankieta potrzeb, filtry sklepów i Moja Lista Zakupów -->
+        <aside class="lg:col-span-4 space-y-5">
+          <div class="bg-white rounded-3xl border border-slate-200/90 p-5 shadow-sm space-y-5">
+            <div class="flex items-center justify-between">
+              <h2 class="text-base font-extrabold text-slate-900">1. Ankieta i filtry zakupowe</h2>
+              <button id="planner-reset-filters-btn" type="button" class="text-xs font-semibold text-emerald-700 hover:underline">Wyczyść</button>
+            </div>
+
+            <!-- Kategoria -->
+            <div>
+              <label for="planner-category-select" class="block text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-2">Czego szukasz?</label>
+              <select id="planner-category-select" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <option value="all">Wszystkie kategorie (8 przykładów)</option>
+                <option value="kosmetyki">✨ Kosmetyki (np. kremy do twarzy)</option>
+                <option value="leki">💊 Leki (produkty lecznicze OTC)</option>
+                <option value="suplementy">🧴 Suplementy diety</option>
+                <option value="zywnosc">🥗 Żywność codzienna i przekąski</option>
+              </select>
+            </div>
+
+            <!-- Sklepy codzienne -->
+            <div>
+              <span class="block text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-2">Gdzie robisz zakupy na co dzień?</span>
+              <div id="planner-stores-group" class="flex flex-wrap gap-2">
+                <label class="cursor-pointer inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 hover:border-emerald-400">
+                  <input type="checkbox" value="Rossmann" class="planner-store-cb accent-emerald-600" /> Rossmann
+                </label>
+                <label class="cursor-pointer inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 hover:border-emerald-400">
+                  <input type="checkbox" value="Hebe" class="planner-store-cb accent-emerald-600" /> Hebe
+                </label>
+                <label class="cursor-pointer inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 hover:border-emerald-400">
+                  <input type="checkbox" value="Biedronka" class="planner-store-cb accent-emerald-600" /> Biedronka
+                </label>
+                <label class="cursor-pointer inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 hover:border-emerald-400">
+                  <input type="checkbox" value="Lidl" class="planner-store-cb accent-emerald-600" /> Lidl
+                </label>
+                <label class="cursor-pointer inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 hover:border-emerald-400">
+                  <input type="checkbox" value="Apteka" class="planner-store-cb accent-emerald-600" /> Apteka
+                </label>
+              </div>
+            </div>
+
+            <!-- Priorytety z ankiety -->
+            <div>
+              <span class="block text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-2">Co jest dla Ciebie ważne?</span>
+              <div class="space-y-2">
+                <label class="cursor-pointer flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 text-xs font-semibold text-slate-700 hover:bg-emerald-50/40">
+                  <input type="checkbox" value="dobra-cena" class="planner-pref-cb accent-emerald-600" />
+                  <span>Bez przepłacania za marketing (stosunek jakości do ceny)</span>
+                </label>
+                <label class="cursor-pointer flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 text-xs font-semibold text-slate-700 hover:bg-emerald-50/40">
+                  <input type="checkbox" value="bezzapachowy" class="planner-pref-cb accent-emerald-600" />
+                  <span>Skóra wrażliwa / bez substancji zapachowych</span>
+                </label>
+                <label class="cursor-pointer flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 text-xs font-semibold text-slate-700 hover:bg-emerald-50/40">
+                  <input type="checkbox" value="certyfikat-lub-lek" class="planner-pref-cb accent-emerald-600" />
+                  <span>Oficjalny certyfikat UE lub status leku (URPL)</span>
+                </label>
+                <label class="cursor-pointer flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 text-xs font-semibold text-slate-700 hover:bg-emerald-50/40">
+                  <input type="checkbox" value="prosty-sklad" class="planner-pref-cb accent-emerald-600" />
+                  <span>Krótki, przejrzysty skład / mniej cukru</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Budżet -->
+            <div>
+              <div class="flex items-center justify-between text-xs font-bold mb-1.5">
+                <span class="uppercase tracking-wider text-slate-500">Maksymalna cena</span>
+                <span id="planner-price-label" class="text-emerald-700">Do 80 zł</span>
+              </div>
+              <input id="planner-max-price" type="range" min="10" max="80" step="5" value="80" class="w-full accent-emerald-600 cursor-pointer" />
+            </div>
+          </div>
+
+          <!-- Zapisana Lista Zakupów -->
+          <div class="bg-white rounded-3xl border border-slate-200/90 p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <h2 class="text-base font-extrabold text-slate-900">📝 Moja Lista Zakupów</h2>
+              <button id="planner-clear-cart-btn" type="button" class="text-xs font-semibold text-rose-600 hover:underline hidden">Wyczyść listę</button>
+            </div>
+            <div id="planner-cart-list" class="space-y-2 text-xs text-slate-500">
+              Dodaj wybrane produkty z prawej strony, aby zaplanować zakupy.
+            </div>
+          </div>
+        </aside>
+
+        <!-- PRAWA KOLUMNA: Wyniki porównania produktów -->
+        <div class="lg:col-span-8 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 px-1">
+            <div id="planner-results-count" class="text-sm font-bold text-slate-700">Znaleziono produktów: 8</div>
+            <div class="text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+              ⚖️ Przykłady edukacyjne · Ocena neutralna (Plusy / Na co zwrócić uwagę)
+            </div>
+          </div>
+
+          <div id="planner-results-grid" class="grid grid-cols-1 gap-4">
+            <!-- Wypełniane dynamicznie przez app.js -->
           </div>
         </div>
       </div>
@@ -615,11 +993,67 @@
                 <h2 class="text-sm font-extrabold text-amber-900 uppercase tracking-wide mb-2">🏅 Zarządzanie jakością i psychologia opakowań</h2>
                 <ul class="text-sm text-slate-700 space-y-1.5 list-disc list-inside">
                   <li><strong>Rozporządzenie (UE) 2018/848</strong> – oficjalny znak produkcji ekologicznej UE (Euroliść + kod jednostki certyfikującej).</li>
-                  <li>Standardy certyfikacji <strong>EU Ecolabel</strong>, <strong>COSMOS</strong> oraz normy <strong>ISO 14024</strong> (etykietowanie środowiskowe typu I).</li>
+                  <li>Standardy certyfikacji <strong>EU Ecolabel</strong>, <strong>COSMOS</strong>, Godło Promocyjne <strong>Teraz Polska</strong> oraz normy <strong>ISO 14024</strong> (etykietowanie środowiskowe typu I).</li>
                   <li>Badania nad efektem <em>health halo</em>, <em>green-cueing</em> oraz <em>science-washingiem</em> w projektowaniu opakowań.</li>
                 </ul>
               </div>
             </div>
+          </div>
+
+          <!-- Nowa sekcja: Polecane serwisy fact-checkingowe -->
+          <div class="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-7 shadow-sm">
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 border border-indigo-200 px-3 py-1 rounded-full mb-2">
+              Weryfikacja informacji w sieci
+            </span>
+            <h2 class="text-xl font-extrabold text-slate-900 mb-1.5">Polecane portale fact-checkingowe</h2>
+            <p class="text-sm text-slate-600 mb-5">
+              Chcesz samodzielnie sprawdzić viralowy wpis o zdrowiu, diecie lub nauce? Korzystaj ze sprawdzonych, niezależnych organizacji fact-checkingowych:
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <a href="https://factcheck.afp.com/" target="_blank" rel="noopener noreferrer" class="group p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 transition-all block">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="font-extrabold text-slate-900 group-hover:text-indigo-700">AFP Fact Check</span>
+                  <span class="text-xs font-bold text-indigo-600">↗</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">Międzynarodowy dział weryfikacji faktów agencji AFP (w tym weryfikacje w języku polskim dotyczące zdrowia i nauki).</p>
+                <span class="inline-block mt-2 text-[11px] font-semibold text-indigo-700">factcheck.afp.com</span>
+              </a>
+
+              <a href="https://demagog.org.pl/" target="_blank" rel="noopener noreferrer" class="group p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-emerald-400 hover:bg-emerald-50/40 transition-all block">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="font-extrabold text-slate-900 group-hover:text-emerald-700">Demagog</span>
+                  <span class="text-xs font-bold text-emerald-600">↗</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">Pierwsza organizacja fact-checkingowa w Polsce – rzetelne analizy mitów zdrowotnych, klimatycznych i medialnych.</p>
+                <span class="inline-block mt-2 text-[11px] font-semibold text-emerald-700">demagog.org.pl</span>
+              </a>
+
+              <a href="https://www.factcheck.org/" target="_blank" rel="noopener noreferrer" class="group p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-sky-400 hover:bg-sky-50/40 transition-all block">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="font-extrabold text-slate-900 group-hover:text-sky-700">FactCheck.org</span>
+                  <span class="text-xs font-bold text-sky-600">↗</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">Projekt Annenberg Public Policy Center – zawiera ceniony dział <em>SciCheck</em> poświęcony rzetelności danych naukowych.</p>
+                <span class="inline-block mt-2 text-[11px] font-semibold text-sky-700">factcheck.org</span>
+              </a>
+
+              <a href="https://www.snopes.com/" target="_blank" rel="noopener noreferrer" class="group p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-400 hover:bg-amber-50/40 transition-all block">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="font-extrabold text-slate-900 group-hover:text-amber-700">Snopes</span>
+                  <span class="text-xs font-bold text-amber-600">↗</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">Jeden z najstarszych globalnych serwisów weryfikujących mity internetowe, łańcuszki i sensacyjne doniesienia.</p>
+                <span class="inline-block mt-2 text-[11px] font-semibold text-amber-700">snopes.com</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Nota metodologiczna i prawna -->
+          <div class="bg-slate-900 text-slate-200 rounded-3xl p-6 shadow-sm">
+            <h2 class="text-sm font-extrabold uppercase tracking-wider text-emerald-400 mb-2">⚖️ Nota prawna i zasada neutralności ocen</h2>
+            <p class="text-xs sm:text-sm leading-relaxed text-slate-300">
+              Aplikacja ma charakter wyłącznie edukacyjny i popularyzatorski. Wszystkie nazwy marek i etykiety w modułach Rentgena, Skanera oraz Planera są przykładami modelowymi, a opisy przedstawiają w sposób wyważony zarówno <strong>plusy</strong>, jak i <strong>kwestie wymagające uwagi konsumenta</strong> w świetle przepisów prawa i wiedzy naukowej. Informacje o lekach mają charakter poglądowy i nie zastępują lektury oficjalnej ulotki ani konsultacji z lekarzem lub farmaceutą.
+            </p>
           </div>
         </div>
 
@@ -714,7 +1148,7 @@
   <footer class="border-t border-slate-200 bg-white mt-auto py-5 no-print">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
       <div><strong>Etykieta bez ściemy</strong> · Prototyp Zespołu 2 na Hackathon PopLab (KRD PLUS)</div>
-      <div>Wszystkie prezentowane marki i opakowania są fikcyjne i służą wyłącznie celom edukacyjnym.</div>
+      <div>Oceny mają charakter neutralny i edukacyjny (Plusy / Na co zwrócić uwagę). Prezentowane marki są fikcyjne.</div>
     </div>
   </footer>
 
